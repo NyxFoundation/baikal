@@ -45,7 +45,7 @@ Frontier を進めた成果だけでなく、提出された失敗、反証、�
 
 ### 1. Verifiability over authority
 
-誰が主張したかではなく、どの条件で、どの証拠により、誰が再検証できるかを重視する。流暢さ、知名度、モデルのブランドは、正しさの代わりにならない。
+誰が主張したかではなく、どの条件で、どの証拠により、誰が再検証できるかを重視する。
 
 ### 2. Cumulative progress over isolated wins
 
@@ -59,7 +59,7 @@ Frontier を進めた成果だけでなく、提出された失敗、反証、�
 
 各 Research Program は、単一の公式 Frontier を持つ。何が「改善」であるかは開始時の検証契約によって決まり、途中で意味を変えない。
 
-異なる目的、仮定、指標を扱いたい場合は、別の Research Program として定義する。
+(異なる目的、仮定、指標を扱いたい場合は、別の Research Program として定義する)
 
 ### 5. Immutable verification contracts
 
@@ -77,7 +77,7 @@ Research Program の開始後、検証契約は変更しない。checker の欠�
 
 特定のモデル、AI 企業、エージェント、ハーネスを研究の中心に置かない。人間、Claude、Codex、独自 solver、将来のモデルが、同じ研究契約の下で参加できる。
 
-AI は provenance として記録し、公開・提出に対する責任は人間または組織が負う。
+(AI は provenance として記録し、公開・提出に対する責任は人間または組織が負う)
 
 ### 8. Configurable autonomy
 
@@ -87,7 +87,7 @@ AI は provenance として記録し、公開・提出に対する責任は人�
 
 公式ホストは、Auto Research を利用する最も便利な場所であるべきだが、唯一の正史にはならない。研究プログラム、履歴、証拠、Frontier は移植可能であり、別の主体が保存・再検証・運営できるべきである。
 
-運営サービスが消えても、研究成果と検証手順は残る。
+(運営サービスが消えても、研究成果と検証手順は残る)
 
 ## Conceptual Model
 
