@@ -12,7 +12,10 @@
   --abyss-700: #14324a;
   --abyss-800: #0d2438;
   --abyss-900: #081a29;
+  /* Abyss: telemetry in near-total darkness */
   --abyss-950: #050f19;
+  --abyss-deep: #03080e;
+  --abyss-black: #020809;
 
   /* Ink: frozen water in solid state (text on light bands) */
   --ink: #0c2135;
