@@ -3,7 +3,7 @@
 ## What this repo is
 
 - Concept-stage design doc for **Baikal**: a research platform whose verification is restricted to machine-decidable procedures (proofs, certificates, model checking, executable checkers). Empirical validation is explicitly out of scope ("管轄外").
-- Single tracked file: `README.md` (Japanese). No code, no manifests, no CI, no tests, no build/lint commands exist. **Nothing here can be executed or tested** — the only validation for a change is reading it plus `git diff`.
+- Tracked content: `README.md` (Japanese design doc) plus a static website design template under `design/` (plain HTML/CSS tokens + one image asset; no build, no dependencies, no CI). **Nothing here can be executed as a test** — validation is reading, `git diff`, and opening `design/*.html` in a browser (headless Chromium screenshots work).
 
 ## Git and delivery conventions
 

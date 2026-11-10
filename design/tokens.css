@@ -1,0 +1,61 @@
+/* Baikal design tokens — "The Dive".
+   The page is a descent into Lake Baikal:
+   frost surface at the top, the verified abyss at the bottom.
+   Depth of color = certainty of record. */
+
+:root {
+  /* Depth bands: surface → shelf → slope → abyss */
+  --surface-0: #f6fbfe;
+  --surface-1: #eef6fb;
+  --shelf: #ddeef7;
+  --slope: #c7e2f1;
+  --abyss-700: #14324a;
+  --abyss-800: #0d2438;
+  --abyss-900: #081a29;
+  --abyss-950: #050f19;
+
+  /* Ink: frozen water in solid state (text on light bands) */
+  --ink: #0c2135;
+  --ink-soft: #3f5f75;
+  --ink-faint: #7b98ac;
+
+  /* Machine verdicts: the only colors allowed to settle the truth */
+  --verified: #0a7f6e;
+  --verified-glow: #19d3b7;
+  --refuted: #c94f31;
+  --failed: #a86f1c;
+  --frozen: #68869b;
+
+  /* Instrument lines & paper */
+  --rule: rgba(12, 33, 53, 0.14);
+  --rule-strong: rgba(12, 33, 53, 0.32);
+  --paper: #ffffff;
+  --paper-veil: rgba(255, 255, 255, 0.64);
+
+  /* Light-on-abyss echoes */
+  --frost: #f3fafd;
+  --frost-mid: #a9c9d8;
+  --frost-dim: #628aa0;
+  --rule-frost: rgba(243, 250, 253, 0.16);
+
+  /* Typography: characterful, editor-scientist pairing */
+  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-ui: "Space Grotesk", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Rhythm */
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 14px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --container: 1180px;
+}
