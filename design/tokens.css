@@ -1,0 +1,56 @@
+/* Baikal design tokens — depth palette from Lake Baikal.
+   Order of meaning: the deeper, the darker and more certain (verified).
+   The surface (frost) is where claims appear; the abyss is where they settle. */
+
+:root {
+  /* Depth: abyss gradient, darkest at the deepest verified point */
+  --abyss-950: #04101b;
+  --abyss-900: #061727;
+  --abyss-800: #0a2337;
+  --abyss-700: #0f3049;
+  --abyss-600: #16405f;
+
+  /* Ice: translucent clarity above the abyss */
+  --ice-400: #4fb2d0;
+  --ice-300: #7cc6de;
+  --ice-200: #a9dcec;
+  --ice-100: #d9f0f8;
+  --frost: #f3fafd;
+
+  /* Machine verdicts: the only colors allowed to settle the truth */
+  --verdict-verified: #45dfcf;
+  --verdict-refuted: #e4785c;
+  --verdict-failed: #e5b866;
+  --verdict-frozen: #86a7b8;
+
+  /* Glass: frosted panels floating on the water */
+  --glass-bg: rgba(169, 220, 236, 0.05);
+  --glass-bg-strong: rgba(169, 220, 236, 0.09);
+  --glass-border: rgba(169, 220, 236, 0.16);
+
+  /* Text */
+  --text-hi: #e9f6fb;
+  --text-mid: #a5c2d0;
+  --text-low: #5f8292;
+
+  /* Typography: system stack only, zero network dependencies */
+  --font-sans: "Inter", "SF Pro Display", system-ui, -apple-system, "Segoe UI",
+    "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  --font-mono: ui-monospace, "JetBrains Mono", "SF Mono", "Cascadia Code",
+    "Menlo", monospace;
+
+  /* Rhythm */
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 16px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --container: 1120px;
+}
