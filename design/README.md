@@ -13,7 +13,7 @@ Yukon 型ベンチマーク・プラットフォームを想定した、Baikal �
 
 ## デザインの考え方 — “The Dive”
 
-- **ページ構成**: hero（Accelerate science.）→ Open Programs → Roles & Rules（参加者図）→ The Frontier（暗転）→ Start here。深度は CSS と配色のメタファとして残す
+- **ページ構成**: hero（Accelerate science.）→ Open Programs → Participants（参加者図）→ The Frontier（暗転）→ Start here（最深部・darkest）→ フッター。深度は視覚メタファとして残す
 - **深度ゲージ**: 左端の `.gauge` 線が CSS scroll-driven animation（`animation-timeline: scroll()`）でスクロールに同期して下降（非対応環境・`prefers-reduced-motion` では無効）
 - **深度＝確実性**: `--abyss-*` は深いほど暗く、検証で確定した地点を表す。verdict 色（`--verified/--refuted/--failed/--frozen`）だけが「真の色」として使える
 - **画像ゼロ**: 全視覚表現は等深線リング・髪lineルール・スクロール同期ゲージ・feTurbulence ノイズ（インライン SVG data URI）など純 CSS/SVGのみ。バイナリアセットなし
