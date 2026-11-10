@@ -229,28 +229,6 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
   background: repeating-linear-gradient(90deg, var(--rule-strong) 0 1px, transparent 1px 12px);
 }
 
-/* ---------- The loop as experiment protocol ---------- */
-
-.protocol { border-top: 1px solid var(--rule-strong); }
-
-.protocol__row {
-  display: grid;
-  grid-template-columns: 72px 260px 1fr;
-  gap: var(--space-5);
-  align-items: baseline;
-  padding: var(--space-4) 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.protocol__idx { font-family: var(--font-mono); font-size: 13px; color: var(--ink-faint); }
-.protocol__name { font-weight: 500; font-size: 17px; color: var(--ink); }
-.protocol__note { font-size: 14px; color: var(--ink-soft); }
-
-.protocol__row--key .protocol__idx,
-.protocol__row--key .protocol__name { color: var(--verified); }
-
-.protocol__foot { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-faint); margin-top: var(--space-4); }
-
 /* ---------- Program cards as survey plates ---------- */
 
 .grid--programs { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
@@ -282,6 +260,21 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
 
 .card__desc { font-size: 13.5px; color: var(--ink-soft); margin: 0 0 var(--space-4); flex: 1; }
 
+.card__impact {
+  font-size: 13px; line-height: 1.55;
+  color: var(--ink-soft);
+  margin-bottom: var(--space-4);
+  padding-left: var(--space-3);
+  border-left: 2px solid rgba(10, 127, 110, 0.5);
+}
+.card__impact span {
+  display: block;
+  font-family: var(--font-mono); font-size: 10.5px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--verified);
+  margin-bottom: 5px;
+}
+
 .card__foot {
   display: flex; justify-content: space-between; align-items: center;
   font-size: 12.5px; color: var(--ink-faint);
@@ -308,21 +301,10 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
 .pill--frozen { color: var(--frozen); border-color: rgba(104, 134, 155, 0.45); background: rgba(104, 134, 155, 0.08); }
 .pill--active { color: var(--ink); border-color: var(--rule-strong); background: transparent; }
 
-/* ---------- Roles: manifest, not cards ---------- */
+/* Roles & Rules: participants as a figure */
 
-.roles { border-top: 1px solid var(--rule-strong); }
-
-.roles__row {
-  display: grid;
-  grid-template-columns: 72px 300px 1fr;
-  gap: var(--space-5);
-  align-items: baseline;
-  padding: var(--space-4) 0;
-  border-bottom: 1px solid var(--rule);
-}
-.roles__idx { font-family: var(--font-mono); font-size: 13px; color: var(--ink-faint); }
-.roles__name { font-weight: 500; font-size: 16.5px; }
-.roles__note { font-size: 14px; color: var(--ink-soft); }
+.flow { margin: 0 0 var(--space-2); }
+.flow svg { display: block; width: 100%; height: auto; }
 
 /* ---------- Principles: field rules ---------- */
 
@@ -530,9 +512,5 @@ td.mono { font-family: var(--font-mono); color: var(--frost); font-size: 12.5px;
 @media (max-width: 720px) {
   .topbar__nav { display: none; }
   .grid--programs { grid-template-columns: 1fr; }
-  .protocol__row { grid-template-columns: 44px 1fr; }
-  .protocol__row .protocol__note { grid-column: 2; }
-  .roles__row { grid-template-columns: 44px 1fr; }
-  .roles__row .roles__note { grid-column: 2; }
   .event { grid-template-columns: 1fr; }
 }
