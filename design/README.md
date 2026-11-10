@@ -8,12 +8,12 @@ Yukon 型ベンチマーク・プラットフォームを想定した、Baikal �
 |---|---|
 | `tokens.css` | デザイントークン（深度パレット・ verdict 色・Glass レイヤー・タイポ・間隔） |
 | `style.css` | コンポーネント（topbar / hero / loop / program cards / Frontier table / roles / pills / CTA / 2カラム program 詳細） |
-| `index.html` | ランディングページ（hero・研究ループ・Research Programs・検証済み改善テーブル・役割・原則・CTA） |
+| `index.html` | ランディング（hero・Open Programs・Roles & Rules・The Frontier「abyss」・Start here・フッター） |
 | `program.html` | Research Program 詳細ページ（検証契約カード・Frontier パネル・lineage・Research Events フィード・提出チェックリスト） |
 
 ## デザインの考え方 — “The Dive”
 
-- **ページ＝潜降**: 上から霜白の水面 → −25 m（ループ）→ −400 m（Programs）→ −1,000 m（Roles）→ −1,642 m（深淵 = Frontier）へ沈む深度バンド構成。セクションは等深線（bathymetric contour）アノテーション付き
+- **ページ構成**: hero（Accelerate science.）→ Open Programs → Roles & Rules（参加者図）→ The Frontier（暗転）→ Start here。深度は CSS と配色のメタファとして残す
 - **深度ゲージ**: 左端の `.gauge` 線が CSS scroll-driven animation（`animation-timeline: scroll()`）でスクロールに同期して下降（非対応環境・`prefers-reduced-motion` では無効）
 - **深度＝確実性**: `--abyss-*` は深いほど暗く、検証で確定した地点を表す。verdict 色（`--verified/--refuted/--failed/--frozen`）だけが「真の色」として使える
 - **画像ゼロ**: 全視覚表現は等深線リング・髪lineルール・スクロール同期ゲージ・feTurbulence ノイズ（インライン SVG data URI）など純 CSS/SVGのみ。バイナリアセットなし
