@@ -73,7 +73,7 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
 
 .topbar__inner { display: flex; align-items: center; gap: var(--space-6); height: 66px; }
 
-.brand { display: flex; align-items: center; gap: var(--space-3); font-family: var(--font-display); font-style: italic; font-size: 22px; letter-spacing: 0.01em; }
+.brand { display: flex; align-items: center; gap: var(--space-3); font-family: var(--font-display); font-size: 23px; letter-spacing: 0.02em; }
 .brand svg { display: block; }
 
 .topbar__nav { display: flex; gap: var(--space-5); margin-left: auto; font-size: 14.5px; color: var(--ink-soft); }
