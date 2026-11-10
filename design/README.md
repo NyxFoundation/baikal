@@ -31,6 +31,11 @@ python3 -m http.server -d design 8000
 # http://localhost:8000/index.html / program.html
 ```
 
+## 公開
+
+- Design テンプレートは Cloudflare Workers でホスト中: **https://baikal.shoukitsuda.workers.dev**
+- 再デプロイ（リポジトリルートで実行）: `npx wrangler deploy`。設定はルートの `wrangler.jsonc`（対象: `design/`）。要 Cloudflare 認証（`npx wrangler login`）と `CLOUDFLARE_ACCOUNT_ID`
+
 ## 注意
 
 - HTML 内の数値・プログラム名・イベントはすべてサンプルデータ（README のユースケースから採ったプレースホルダ）
