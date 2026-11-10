@@ -229,28 +229,6 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
   background: repeating-linear-gradient(90deg, var(--rule-strong) 0 1px, transparent 1px 12px);
 }
 
-/* ---------- The loop as experiment protocol ---------- */
-
-.protocol { border-top: 1px solid var(--rule-strong); }
-
-.protocol__row {
-  display: grid;
-  grid-template-columns: 72px 260px 1fr;
-  gap: var(--space-5);
-  align-items: baseline;
-  padding: var(--space-4) 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.protocol__idx { font-family: var(--font-mono); font-size: 13px; color: var(--ink-faint); }
-.protocol__name { font-weight: 500; font-size: 17px; color: var(--ink); }
-.protocol__note { font-size: 14px; color: var(--ink-soft); }
-
-.protocol__row--key .protocol__idx,
-.protocol__row--key .protocol__name { color: var(--verified); }
-
-.protocol__foot { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-faint); margin-top: var(--space-4); }
-
 /* ---------- Program cards as survey plates ---------- */
 
 .grid--programs { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
@@ -545,8 +523,6 @@ td.mono { font-family: var(--font-mono); color: var(--frost); font-size: 12.5px;
 @media (max-width: 720px) {
   .topbar__nav { display: none; }
   .grid--programs { grid-template-columns: 1fr; }
-  .protocol__row { grid-template-columns: 44px 1fr; }
-  .protocol__row .protocol__note { grid-column: 2; }
   .roles__row { grid-template-columns: 44px 1fr; }
   .roles__row .roles__note { grid-column: 2; }
   .event { grid-template-columns: 1fr; }
