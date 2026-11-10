@@ -199,11 +199,25 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
 /* ---------- Depth bands ---------- */
 
 .band { position: relative; }
-.band--surface-1 { background: var(--surface-1); }
-.band--shelf { background: var(--shelf); }
-.band--slope { background: var(--slope); }
+/* Depth bands: continuous ramps so the dive never breaks into steps */
 
-.band__inner { padding: var(--space-9) 0; }
+.band--surface-1 { background: linear-gradient(180deg, var(--surface-1) 0, var(--surface-1) 72%, var(--surface-0) 100%); }
+.band--shelf { position: relative; background: var(--shelf); }
+.band--shelf::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 160px;
+  background: linear-gradient(180deg, var(--surface-0), rgba(221, 238, 247, 0));
+  pointer-events: none;
+}
+.band--slope { position: relative; background: var(--slope); }
+.band--slope::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 160px;
+  background: linear-gradient(180deg, var(--shelf), rgba(199, 226, 241, 0));
+  pointer-events: none;
+}
+
+.band__inner { position: relative; padding: var(--space-9) 0; }
 
 .band h2 {
   font-family: var(--font-display);
@@ -328,14 +342,24 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
     linear-gradient(180deg, var(--abyss-800), var(--abyss-950));
 }
 
-.abyss::after {
+/* fade in from the slope, then resurface into Start here */
+.abyss::before {
   content: "";
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  position: absolute; top: 0; left: 0; right: 0; height: 220px;
+  background: linear-gradient(180deg, var(--slope), rgba(199, 226, 241, 0));
   pointer-events: none;
 }
 
-.abyss__inner { position: relative; z-index: 1; padding: var(--space-9) 0; }
+.abyss::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, rgba(238, 246, 251, 0) 78%, var(--surface-1) 100%);
+  pointer-events: none;
+}
+
+.abyss__inner { position: relative; z-index: 1; padding: var(--space-9) 0 calc(var(--space-9) + 260px); }
 
 .abyss h2 {
   font-family: var(--font-display); font-weight: 400;
