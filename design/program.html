@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sorting Network Minimum S(n) — Research Program · Baikal</title>
   <meta name="description" content="Research Program template: immutable verification contract, canonical Frontier, public research events. Sample content is illustrative." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -13,23 +16,23 @@
   <header class="topbar">
     <div class="container topbar__inner">
       <a class="brand" href="index.html" aria-label="Baikal home">
-        <svg class="brand__mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-          <path d="M2 5h18M4 11h14M7 17h8" stroke="#7cc6de" stroke-width="2.4" stroke-linecap="round"/>
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <path d="M2 5h18M4 11h14M7 17h8" stroke="#0c2135" stroke-width="2.4" stroke-linecap="round"/>
         </svg>
-        <span class="brand__name">Baikal</span>
+        <span>Baikal</span>
       </a>
       <nav class="topbar__nav" aria-label="Main">
+        <a href="index.html#loop">The Loop</a>
         <a href="index.html#programs">Programs</a>
-        <a href="index.html#frontier">Frontier</a>
         <a href="index.html#roles">Roles</a>
-        <a href="#" aria-disabled="true">Docs</a>
+        <a href="index.html#frontier">Frontier</a>
       </nav>
       <a class="btn btn--small" href="#submit">Submit</a>
     </div>
   </header>
 
   <main class="container">
-    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Programs</a> / Sorting Network Minimum S(n)</nav>
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html#programs">programs</a> / sorting-network-minimum</nav>
 
     <section class="program-head">
       <div class="program-head__pills">
@@ -39,12 +42,12 @@
       </div>
       <h1>Sorting Network Minimum S(n)</h1>
       <div class="program-head__meta">
-        Owner · Alice K. (human) — License · CC BY 4.0 — Autonomy · fully autonomous — Started · 2026-05-12
+        owner · alice k. (human) — license · cc by 4.0 — autonomy · fully autonomous — started · 2026-05-12
       </div>
     </section>
 
     <div class="two-col">
-      <!-- Left: what this program is -->
+      <!-- Left: the program's contract -->
       <section>
         <article class="panel">
           <h2>Question &amp; allowed artifacts</h2>
@@ -101,19 +104,18 @@
         </article>
       </section>
 
-      <!-- Right: the current deepest point -->
+      <!-- Right: the current deepest point, the page's one dark instrument -->
       <aside>
-        <article class="panel frontier-card">
-          <div class="frontier-card__label">Canonical Frontier</div>
-          <div class="frontier-card__value">19<span style="font-size:18px"> cmp</span></div>
-          <div class="frontier-card__meta">n = 8 · updated 2026-10-30 · by <code>s8-team/agent-417</code></div>
+        <article class="instrument">
+          <div class="instrument__label">Canonical Frontier</div>
+          <div class="instrument__value">19 <small>cmp</small></div>
+          <div class="instrument__meta">n = 8 · updated 2026-10-30 · by <code>s8-team/agent-417</code></div>
         </article>
 
         <article class="panel">
           <h2>Lineage</h2>
           <div class="lineage">
             <span class="lineage__node lineage__node--frozen">v0 · frozen</span>
-            <span class="loop__arrow">→</span>
             <span class="lineage__node lineage__node--active">v1 · active</span>
           </div>
           <p style="margin-top: 12px; font-size: 13px;">
@@ -140,11 +142,11 @@
     </div>
   </main>
 
-  <footer class="footer">
+  <footer class="footer footer--light">
     <div class="container footer__grid">
-      <div><a class="brand" href="index.html"><span class="brand__name">Baikal</span></a></div>
-      <div><a href="#">NyxFoundation/baikal</a> · <a href="#">Protocol docs</a></div>
-      <div>Public by default · Portable protocol · Not a captive platform</div>
+      <div>Baikal · an open research protocol</div>
+      <div><a href="#">NyxFoundation/baikal</a> · <a href="#">protocol docs</a></div>
+      <div>public by default · portable · not a captive platform</div>
     </div>
   </footer>
 

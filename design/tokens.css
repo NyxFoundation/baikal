@@ -1,48 +1,52 @@
-/* Baikal design tokens — depth palette from Lake Baikal.
-   Order of meaning: the deeper, the darker and more certain (verified).
-   The surface (frost) is where claims appear; the abyss is where they settle. */
+/* Baikal design tokens — "The Dive".
+   The page is a descent into Lake Baikal:
+   frost surface at the top, the verified abyss at the bottom.
+   Depth of color = certainty of record. */
 
 :root {
-  /* Depth: abyss gradient, darkest at the deepest verified point */
-  --abyss-950: #04101b;
-  --abyss-900: #061727;
-  --abyss-800: #0a2337;
-  --abyss-700: #0f3049;
-  --abyss-600: #16405f;
+  /* Depth bands: surface → shelf → slope → abyss */
+  --surface-0: #f6fbfe;
+  --surface-1: #eef6fb;
+  --shelf: #ddeef7;
+  --slope: #c7e2f1;
+  --abyss-700: #14324a;
+  --abyss-800: #0d2438;
+  --abyss-900: #081a29;
+  --abyss-950: #050f19;
 
-  /* Ice: translucent clarity above the abyss */
-  --ice-400: #4fb2d0;
-  --ice-300: #7cc6de;
-  --ice-200: #a9dcec;
-  --ice-100: #d9f0f8;
-  --frost: #f3fafd;
+  /* Ink: frozen water in solid state (text on light bands) */
+  --ink: #0c2135;
+  --ink-soft: #3f5f75;
+  --ink-faint: #7b98ac;
 
   /* Machine verdicts: the only colors allowed to settle the truth */
-  --verdict-verified: #45dfcf;
-  --verdict-refuted: #e4785c;
-  --verdict-failed: #e5b866;
-  --verdict-frozen: #86a7b8;
+  --verified: #0a7f6e;
+  --verified-glow: #19d3b7;
+  --refuted: #c94f31;
+  --failed: #a86f1c;
+  --frozen: #68869b;
 
-  /* Glass: frosted panels floating on the water */
-  --glass-bg: rgba(169, 220, 236, 0.05);
-  --glass-bg-strong: rgba(169, 220, 236, 0.09);
-  --glass-border: rgba(169, 220, 236, 0.16);
+  /* Instrument lines & paper */
+  --rule: rgba(12, 33, 53, 0.14);
+  --rule-strong: rgba(12, 33, 53, 0.32);
+  --paper: #ffffff;
+  --paper-veil: rgba(255, 255, 255, 0.64);
 
-  /* Text */
-  --text-hi: #e9f6fb;
-  --text-mid: #a5c2d0;
-  --text-low: #5f8292;
+  /* Light-on-abyss echoes */
+  --frost: #f3fafd;
+  --frost-mid: #a9c9d8;
+  --frost-dim: #628aa0;
+  --rule-frost: rgba(243, 250, 253, 0.16);
 
-  /* Typography: system stack only, zero network dependencies */
-  --font-sans: "Inter", "SF Pro Display", system-ui, -apple-system, "Segoe UI",
-    "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
-  --font-mono: ui-monospace, "JetBrains Mono", "SF Mono", "Cascadia Code",
-    "Menlo", monospace;
+  /* Typography: characterful, editor-scientist pairing */
+  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-ui: "Space Grotesk", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   /* Rhythm */
-  --radius-s: 6px;
-  --radius-m: 10px;
-  --radius-l: 16px;
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 14px;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -52,5 +56,6 @@
   --space-7: 48px;
   --space-8: 64px;
   --space-9: 96px;
-  --container: 1120px;
+  --space-10: 128px;
+  --container: 1180px;
 }
