@@ -149,18 +149,6 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
 
 .hero__cta { display: flex; gap: var(--space-3); flex-wrap: wrap; }
 
-/* Field measurements */
-.measurements {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-5);
-  margin-top: var(--space-9);
-}
-
-.measure { border-top: 1px solid var(--rule-strong); padding-top: var(--space-4); }
-.measure__value { font-family: var(--font-mono); font-size: 30px; font-weight: 500; color: var(--ink); }
-.measure__label { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-top: 6px; }
-
 /* ---------- Depth bands ---------- */
 
 .band { position: relative; }
@@ -500,7 +488,6 @@ td.mono { font-family: var(--font-mono); color: var(--frost); font-size: 12.5px;
 @media (max-width: 1080px) {
   .gauge { display: none; }
   .grid--programs { grid-template-columns: repeat(2, 1fr); }
-  .measurements { grid-template-columns: repeat(2, 1fr); }
   .two-col { grid-template-columns: 1fr; }
 }
 
@@ -512,5 +499,4 @@ td.mono { font-family: var(--font-mono); color: var(--frost); font-size: 12.5px;
   .roles__row { grid-template-columns: 44px 1fr; }
   .roles__row .roles__note { grid-column: 2; }
   .event { grid-template-columns: 1fr; }
-  .measurements { grid-template-columns: 1fr; }
 }
