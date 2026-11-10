@@ -430,20 +430,12 @@ td.mono { font-family: var(--font-mono); color: var(--frost); font-size: 12.5px;
 .footer__icon { display: inline-flex; }
 .footer__icon svg { display: block; }
 
-.footer__nyx { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: 17px; letter-spacing: 0.01em; }
-.footer__nyx svg { display: block; }
+.footer__nyx { display: inline-flex; align-items: center; }
+.footer__nyx img { display: block; height: 20px; width: auto; }
 
 .footer--deep { background: var(--abyss-black); }
 .footer--deep .footer__icon { color: var(--frost-mid); }
 .footer--deep .footer__icon:hover { color: var(--frost); }
-.footer--deep .footer__nyx { color: var(--frost-mid); }
-.footer--deep .footer__nyx:hover { color: var(--frost); }
-.footer--deep .footer__nyx svg { color: var(--frost-dim); }
-
-.footer--light .footer__icon { color: var(--ink-soft); }
-.footer--light .footer__icon:hover { color: var(--ink); }
-.footer--light .footer__nyx, .footer--light .footer__nyx svg { color: #3a411f; }
-.footer--light .footer__nyx:hover, .footer--light .footer__nyx:hover svg { color: #262b12; }
 .footer a { color: var(--frost-mid); }
 .footer a:hover { color: var(--frost); }
 
