@@ -154,6 +154,80 @@
             <div class="card__impact"><span>If solved →</span>The same packing geometry governs how signal constellations share the airwaves. Better lattices let Wi-Fi, satellite, and optical links carry more data on the same power, as the 24-dimension Leech lattice already does in deep-space communication. <span class="em">📡🛰️🔦</span></div>
             <div class="card__foot"><span class="pill pill--active">Active</span><a href="program.html">view program →</a></div>
           </article>
+          <article class="card reveal">
+            <span class="card__method">Capacity bounds</span>
+            <h3>DNA Storage Coding Capacity</h3>
+            <div class="card__frontier">1.60 achieved · 1.84 ceiling bits/nt</div>
+            <svg class="card__figure" viewBox="0 0 300 96" role="img" aria-label="Code constructions rising toward a dashed capacity ceiling: constructions reach 1.60 bits per nucleotide while a combinatorial converse caps the channel at 1.84.">
+              <rect x="30" y="24" width="256" height="32" fill="rgba(10, 127, 110, 0.06)"/>
+              <line x1="30" y1="56" x2="286" y2="56" stroke="#0c2135" stroke-opacity="0.35" stroke-width="1.2"/>
+              <line x1="30" y1="24" x2="286" y2="24" stroke="#0c2135" stroke-opacity="0.6" stroke-width="1.4" stroke-dasharray="5 4"/>
+              <polyline points="52,44 98,40 150,36 208,34 244,31" fill="none" stroke="#0a7f6e" stroke-width="1.8"/>
+              <g fill="#0a7f6e"><circle cx="52" cy="44" r="2.6"/><circle cx="98" cy="40" r="2.6"/><circle cx="150" cy="36" r="2.6"/><circle cx="208" cy="34" r="2.6"/><circle cx="244" cy="31" r="3.2"/></g>
+              <g font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#7b98ac">
+                <text x="30" y="80">1.0</text><text x="158" y="80" text-anchor="middle">1.5</text><text x="286" y="80" text-anchor="end">2.0</text>
+              </g>
+              <text x="286" y="15" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing="1" fill="#0c2135">CONVERSE · 1.84</text>
+              <text x="252" y="27" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#0a7f6e">1.60</text>
+            </svg>
+            <p class="card__desc">Bits per nucleotide for error-bounded DNA read/write: constructions push the lower bound, combinatorial converses cap it from above.</p>
+            <div class="card__impact"><span>If solved →</span>The ceiling tells archive builders exactly how dense a DNA library can be — a civilization's records in grams of polymer. <span class="em">🧬💾📚</span></div>
+            <div class="card__foot"><span class="pill pill--active">Active</span><a href="program.html">view program →</a></div>
+          </article>
+          <article class="card reveal">
+            <span class="card__method">DP checker</span>
+            <h3>mRNA Stability Capacity</h3>
+            <div class="card__frontier">−12.4 kcal · verified to n = 10 kb</div>
+            <svg class="card__figure" viewBox="0 0 300 96" role="img" aria-label="The verified stability curve deepens with sequence length; beyond 10 kilobases it opens into an unconstrained cone.">
+              <line x1="18" y1="20" x2="18" y2="78" stroke="#0c2135" stroke-opacity="0.35" stroke-width="1.2"/>
+              <path d="M14 74 L18 80 L22 74" fill="none" stroke="#0c2135" stroke-opacity="0.5" stroke-width="1.2"/>
+              <polyline points="36,26 86,34 140,46 200,54 250,62" fill="none" stroke="#0c2135" stroke-opacity="0.55" stroke-width="1.8"/>
+              <g fill="#0a7f6e"><circle cx="36" cy="26" r="2.4"/><circle cx="86" cy="34" r="2.4"/><circle cx="140" cy="46" r="2.4"/><circle cx="200" cy="54" r="2.4"/><circle cx="250" cy="62" r="2.8"/></g>
+              <polygon points="250,62 286,40 286,86" fill="rgba(10, 127, 110, 0.08)"/>
+              <line x1="250" y1="62" x2="286" y2="40" stroke="#0a7f6e" stroke-width="1.2" stroke-dasharray="3 3"/>
+              <line x1="250" y1="62" x2="286" y2="86" stroke="#0a7f6e" stroke-width="1.2" stroke-dasharray="3 3"/>
+              <text x="276" y="36" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#0a7f6e">OPEN</text>
+              <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#7b98ac">
+                <text x="46" y="82">n = 1 kb</text><text x="140" y="82" text-anchor="middle">n = 10 kb</text><text x="286" y="82" text-anchor="end">n = 100 kb</text>
+              </g>
+            </svg>
+            <p class="card__desc">For each length and codon constraint, what is the most stable sequence manufacturable? A folding DP checker settles candidates exactly.</p>
+            <div class="card__impact"><span>If solved →</span>The stability–length frontier hands vaccine and therapeutic designers the best achievable half-life at any size — lower doses, gentler cold chains. <span class="em">🧪💉❄️</span></div>
+            <div class="card__foot"><span class="pill pill--active">Active</span><a href="program.html">view program →</a></div>
+          </article>
+          <article class="card reveal">
+            <span class="card__method">k-mer certificate</span>
+            <h3>Plastome Assembly Audit</h3>
+            <div class="card__frontier">312 audited · 17 refuted</div>
+            <svg class="card__figure" viewBox="0 0 300 96" role="img" aria-label="A circular plastome: verified segments in teal, one refuted junction in coral where the published assembly breaks.">
+              <circle cx="150" cy="48" r="30" fill="none" stroke="#0c2135" stroke-opacity="0.3" stroke-width="1.2"/>
+              <path d="M124 31 A 30 30 0 0 1 173 27" fill="none" stroke="#0a7f6e" stroke-width="7"/>
+              <path d="M176 61 A 30 30 0 0 1 121 63" fill="none" stroke="#0a7f6e" stroke-width="7"/>
+              <g stroke="#c94f31" stroke-width="2.2"><line x1="182" y1="33" x2="192" y2="43"/><line x1="192" y1="33" x2="182" y2="43"/></g>
+              <text x="196" y="53" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#c94f31">REFUTED ×17</text>
+              <text x="196" y="12" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#7b98ac">IR JUNCTIONS</text>
+              <text x="150" y="52" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1.5" fill="#7b98ac">cpDNA</text>
+            </svg>
+            <p class="card__desc">Published chloroplast and mitochondrial genomes hide misassemblies at inverted repeats. A k-mer certificate decides closure and IR placement per record.</p>
+            <div class="card__impact"><span>If solved →</span>Species ID, food authentication, and phylogenies built on plastomes stop inheriting invisible assembly errors. <span class="em">🌿🔍🧾</span></div>
+            <div class="card__foot"><span class="pill pill--active">Audit</span><a href="program.html">view program →</a></div>
+          </article>
+          <article class="card reveal">
+            <span class="card__method">Enumeration sweep</span>
+            <h3>CRISPR Off-Target Audit</h3>
+            <div class="card__frontier">214 “no off-target” claims · 9 refuted</div>
+            <svg class="card__figure" viewBox="0 0 300 96" role="img" aria-label="An exhaustive sweep over one genome: all candidate sites within edit distance six marked in teal, three published no-off-target claims refuted in coral.">
+              <rect x="60" y="30" width="200" height="36" fill="rgba(10, 127, 110, 0.06)"/>
+              <line x1="14" y1="48" x2="286" y2="48" stroke="#0c2135" stroke-opacity="0.35" stroke-width="1.2"/>
+              <g fill="#0a7f6e"><circle cx="70" cy="48" r="2.4"/><circle cx="95" cy="48" r="2.4"/><circle cx="120" cy="48" r="2.4"/><circle cx="145" cy="48" r="2.4"/><circle cx="170" cy="48" r="2.4"/><circle cx="195" cy="48" r="2.4"/><circle cx="220" cy="48" r="2.4"/><circle cx="245" cy="48" r="2.4"/></g>
+              <g fill="#c94f31"><circle cx="110" cy="30" r="3.2"/><circle cx="178" cy="30" r="3.2"/><circle cx="232" cy="30" r="3.2"/></g>
+              <text x="160" y="20" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" letter-spacing="1" fill="#0a7f6e">FULL SWEEP · d = 6</text>
+              <text x="178" y="66" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1" fill="#c94f31">✗ 9 CONFIRMED MISSES</text>
+            </svg>
+            <p class="card__desc">Papers say “no off-target sites found.” An exhaustive sweep inside a fixed edit distance decides whether the claim was actually complete.</p>
+            <div class="card__impact"><span>If solved →</span>Gene-therapy reviews gain a completeness certificate instead of a heuristic screenshot — oncogenic surprises caught upstream. <span class="em">🧬🚫🛡️</span></div>
+            <div class="card__foot"><span class="pill pill--active">Audit</span><a href="program.html">view program →</a></div>
+          </article>
         </div>
       </div>
     </section>
