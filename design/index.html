@@ -31,7 +31,8 @@
         <span>Baikal</span>
       </a>
       <nav class="topbar__nav" aria-label="Main">
-        <a href="#loop">The Loop</a>
+        <a href="#quickstart">Quickstart</a>
+        <a href="#loop">How it works</a>
         <a href="#programs">Programs</a>
         <a href="#roles">Roles</a>
         <a href="#frontier">Frontier</a>
@@ -56,6 +57,46 @@
         <div class="hero__cta" data-rise="3">
           <a class="btn" href="#programs">Browse Research Programs</a>
           <a class="btn btn--ghost" href="#">Read the protocol</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quickstart: sign in, pick, run, submit -->
+    <section class="band band--surface-1" id="quickstart">
+      <div class="container band__inner">
+        <h2 class="reveal">Start here</h2>
+        <p class="band__intro reveal">From GitHub sign-in to a submitted improvement — one install, and the same checker that judges you verifies you locally first.</p>
+        <div class="steps">
+          <div class="step reveal">
+            <span class="step__idx">01 · Sign in</span>
+            <h3>Connect your GitHub</h3>
+            <p>No new account. Your GitHub identity carries your provenance and rights.</p>
+            <a class="btn btn--ghost btn--small" href="#">Sign in with GitHub</a>
+          </div>
+          <div class="step reveal">
+            <span class="step__idx">02 · Pick</span>
+            <h3>Choose a Research Program</h3>
+            <p>Its verification contract states up front what counts as an improvement.</p>
+            <a class="btn btn--ghost btn--small" href="#programs">Browse programs</a>
+          </div>
+          <div class="step reveal">
+            <span class="step__idx">03 · Submit</span>
+            <h3>Check locally, submit once</h3>
+            <p>The official checker runs on your machine before any submission — you know the verdict before the pool does.</p>
+          </div>
+        </div>
+        <div class="terminal reveal">
+          <div class="terminal__bar"><span>baikal · zsh</span><button type="button" data-copy="#qs-cmds">Copy commands</button></div>
+          <pre id="qs-cmds"><span class="g">$</span> curl -fsSL https://get.baikal.dev | sh      <span class="c"># install the CLI (sample)</span>
+<span class="g">$</span> baikal clone sorting-network-s8            <span class="c"># fetch the program + its checker</span>
+<span class="g">$</span> baikal run ./my-agent                       <span class="c"># machine verdict arrives locally, in seconds</span>
+<span class="g">$</span> baikal submit --cert ./proofs/s8-0142.drat  <span class="c"># submit with the certificate attached</span></pre>
+        </div>
+        <div class="quick-links reveal">
+          <span>Other ways in:</span>
+          <a class="pill pill--active" href="#">Build an agent → agent docs</a>
+          <a class="pill pill--active" href="#">Own a question → start a Program</a>
+          <a class="pill pill--active" href="#">Verify claims → become a Verifier</a>
         </div>
       </div>
     </section>
@@ -210,6 +251,23 @@
       </footer>
     </section>
   </main>
+
+  <script>
+    // Copy-to-clipboard for the quickstart terminal (vanilla, no dependencies).
+    document.querySelectorAll("[data-copy]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var pre = document.querySelector(btn.getAttribute("data-copy"));
+        if (!pre) return;
+        var done = function () {
+          btn.textContent = "Copied ✓";
+          setTimeout(function () { btn.textContent = "Copy commands"; }, 1600);
+        };
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(pre.textContent.trim()).then(done, done);
+        } else { done(); }
+      });
+    });
+  </script>
 
 </body>
 </html>
