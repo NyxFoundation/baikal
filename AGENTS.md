@@ -1,13 +1,13 @@
-# AGENTS.md — Auto Research repository
+# AGENTS.md — Baikal repository
 
 ## What this repo is
 
-- Concept-stage design doc for **Auto Research**: a research platform whose verification is restricted to machine-decidable procedures (proofs, certificates, model checking, executable checkers). Empirical validation is explicitly out of scope ("管轄外").
+- Concept-stage design doc for **Baikal**: a research platform whose verification is restricted to machine-decidable procedures (proofs, certificates, model checking, executable checkers). Empirical validation is explicitly out of scope ("管轄外").
 - Single tracked file: `README.md` (Japanese). No code, no manifests, no CI, no tests, no build/lint commands exist. **Nothing here can be executed or tested** — the only validation for a change is reading it plus `git diff`.
 
 ## Git and delivery conventions
 
-- Remote: `github.com/NyxFoundation/auto-research`. **Default branch is `master`** (not `main`). Work lands via feature branches and PRs; history follows Conventional Commits (`docs:`, …) with English subjects and English bodies, while all document content is Japanese.
+- Remote: `github.com/NyxFoundation/baikal`. **Default branch is `master`** (not `main`). Work lands via feature branches and PRs; history follows Conventional Commits (`docs:`, …) with English subjects and English bodies, while all document content is Japanese.
 - Before editing, check `git status` for uncommitted work and confirm the current branch (e.g., `docs/scientific-invention-vision`) relates to the task.
 
 ## Design invariants you must not silently violate
