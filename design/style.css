@@ -225,7 +225,8 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
   pointer-events: none;
 }
 
-.band__inner { position: relative; padding: var(--space-9) 0; }
+/* vertical padding only — horizontal gutter stays on .container */
+.band__inner { position: relative; padding-top: var(--space-9); padding-bottom: var(--space-9); }
 
 .band h2 {
   font-family: var(--font-display);
@@ -369,7 +370,7 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
   pointer-events: none;
 }
 
-.abyss__inner { position: relative; z-index: 1; padding: var(--space-9) 0; }
+.abyss__inner { position: relative; z-index: 1; padding-top: var(--space-9); padding-bottom: var(--space-9); }
 
 .abyss h2 {
   font-family: var(--font-display); font-weight: 400;
@@ -384,7 +385,7 @@ code { font-family: var(--font-mono); font-size: 0.92em; color: var(--ink); }
 .table-wrap {
   border: 1px solid var(--rule-frost);
   border-radius: var(--radius-l);
-  overflow: hidden;
+  overflow-x: auto;
   background: rgba(246, 251, 254, 0.03);
   backdrop-filter: blur(4px);
 }
@@ -553,8 +554,25 @@ td.mono { font-family: var(--font-mono); color: var(--frost); font-size: 12.5px;
   .two-col { grid-template-columns: 1fr; }
 }
 
+/* the flow diagram is drawn on a 1100-unit canvas; below ~1000px its
+   labels drop under 10px, so it becomes a swipeable figure instead */
+@media (max-width: 1024px) {
+  .flow { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .flow svg { min-width: 940px; }
+}
+
 @media (max-width: 720px) {
   .topbar__nav { display: none; }
+  /* with the nav gone, the CTA keeps the right edge */
+  .topbar .btn { margin-left: auto; }
+  .hero { padding: var(--space-8) 0 var(--space-7); }
+  .band__inner, .abyss__inner { padding-top: var(--space-7); padding-bottom: var(--space-7); }
   .grid--programs { grid-template-columns: 1fr; }
   .event { grid-template-columns: 1fr; }
+  /* five telemetry columns cannot fit a phone: swipe, never squeeze */
+  .table-wrap table { min-width: 640px; }
+  th, td { padding: 12px 16px; }
+  /* a 150px label column starves the value column on a phone */
+  .kv { grid-template-columns: 1fr; row-gap: 2px; }
+  .kv dt { padding-top: var(--space-3); }
 }
