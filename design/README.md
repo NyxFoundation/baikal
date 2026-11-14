@@ -1,43 +1,99 @@
+---
+title: Baikal サイト デザインテンプレート
+last_updated: 2026-11-15
+tags:
+  - design
+  - accessibility
+---
+
 # Baikal サイト デザインテンプレート
 
-Yukon 型ベンチマーク・プラットフォームを想定した、Baikal 湖インスパイアのウェブサイトデザインテンプレート。“The Dive” 構成（ページ自体が湖の潜降）。軽微なフォント CDN を除けば実質依存なしの静的 HTML/CSS。
+湖面から深い水域へ潜る「The Dive」を、研究記録を読む誌面として表現する静的 HTML/CSS。英語 UI と既存ロゴを維持し、トップページと Research Program 詳細の文字組み・配色・余白を共通化している。ビルド、アプリケーション依存、JavaScript は不要。
 
-## 構成
-
-| ファイル | 内容 |
-|---|---|
-| `tokens.css` | デザイントークン（深度パレット・ verdict 色・Glass レイヤー・タイポ・間隔） |
-| `style.css` | コンポーネント（topbar / hero / loop / program cards / Frontier table / roles / pills / CTA / 2カラム program 詳細） |
-| `index.html` | ランディング（hero・Open Programs・Roles & Rules・The Frontier「abyss」・Start here・フッター） |
-| `program.html` | Research Program 詳細ページ（検証契約カード・Frontier パネル・lineage・Research Events フィード・提出チェックリスト） |
-
-## デザインの考え方 — “The Dive”
-
-- **ページ構成**: hero（Accelerate science.）→ Open Programs → Participants（参加者図）→ The Frontier（暗転）→ Start here（最深部・darkest）→ フッター。深度は視覚メタファとして残す
-- **深度ゲージ**: 左端の `.gauge` 線が CSS scroll-driven animation（`animation-timeline: scroll()`）でスクロールに同期して下降（非対応環境・`prefers-reduced-motion` では無効）
-- **深度＝確実性**: `--abyss-*` は深いほど暗く、検証で確定した地点を表す。verdict 色（`--verified/--refuted/--failed/--frozen`）だけが「真の色」として使える
-- **画像ゼロ**: 全視覚表現は等深線リング・髪lineルール・スクロール同期ゲージ・feTurbulence ノイズ（インライン SVG data URI）など純 CSS/SVGのみ。バイナリアセットなし
-- **モーション**: ヒーローの段階的 fade-rise、`view()` timeline のセクション reveal。`prefers-reduced-motion` で全停止
-
-## タイポグラフィ
-
-- **Instrument Serif**（ディスプレイ・イタリック）× **Space Grotesk**（UI）× **IBM Plex Mono**（計測値・アノテーション）の Google Fonts 読み込み
-- オフライン時はフォールバックスタック（Georgia / 諏訪系ゴシック / ui-monospace）に縮退
+プログラム、数値、契約、イベントはすべて表示例。実際の研究成果や募集中の課題ではない。ログイン、CLI、提出機能は提供しない。
 
 ## プレビュー
 
+リポジトリルートで実行する。
+
 ```sh
-python3 -m http.server -d design 8000
-# http://localhost:8000/index.html / program.html
+python3 -m http.server 8000 --bind 127.0.0.1 --directory design
 ```
+
+- トップ: <http://127.0.0.1:8000/index.html>
+- 詳細: <http://127.0.0.1:8000/program.html>
+
+## 構成
+
+| ファイル | 役割 |
+|---|---|
+| `tokens.css` | 深度パレット、判定色、書体、余白 |
+| `style.css` | 両ページのレイアウト、操作状態、レスポンシブ表示 |
+| `index.html` | 導入、代表プログラム、研究一覧、検証手順、研究記録、参加への入口 |
+| `program.html` | 例示の Frontier、検証契約、イベント、継承関係、提出前チェックリスト |
+| `assets/nyx-logo*.svg` | 既存の Nyx Foundation ロゴ |
+
+## デザイン方針
+
+対象は研究者とエージェント開発者。世界観を変えずに説明密度を下げる方針を採用した。ENERGY 2 / RHYTHM 2 / MOTION 1。
+
+| 判断 | 理由 |
+|---|---|
+| 湖面の白から深い紺へ | 問いから検証記録へ読み進む順序を深度で表す。固定テーマはこの構成の一部であり、暗色モード切替ではない |
+| Instrument Serif の見出し | 論考のような落ち着きと、既存 Baikal の表情を残す |
+| Space Grotesk の本文 | 既存 UI の書体を維持し、長い説明と操作ラベルを読み分ける |
+| IBM Plex Mono の注記・値 | 手法、例示の計測値、章番号を本文から区別する |
+| 詳細のある1件を大きく、残り7件は一覧 | 同じ重さのカードを並べず、読む入口と比較する情報を分ける |
+| 細い罫線と章ごとの余白 | カードの影や浮遊表現を使わずに情報の区切りを示す |
+| 既存の比較器図を再利用 | 題材を示す模式図として残す。完全な候補ネットワークではないと明記する |
+| 静的な等深線と左端ゲージ | 湖の意匠を保ち、スクロール中も文章を動かさない |
+| 判定ラベルの色と文字 | 成功・反証・再現失敗を色だけに頼らず区別する |
+| 矢印は詳細への移動と継承関係に限定 | 方向や後継関係を示す用途だけに使う |
+
+Google Fonts から3書体を読み込む。取得できなくても Georgia / sans-serif / ui-monospace で読める。新規の画像生成、アイコンライブラリ、発光・ガラス・カードの影は使っていない。
+
+## 操作と表示の制約
+
+- ナビゲーションは全幅域で表示する。狭い画面ではヘッダーの固定を外し、本文の表示領域を確保する。
+- キーボード用のスキップリンクとフォーカス枠を設ける。リンクの操作領域は44px以上。
+- 研究記録の表はスマホで内部だけ横スクロールする。説明文とフォーカス可能な領域を設け、矢印キーでも読める。
+- 詳細ページがあるのは Sorting Network の例だけ。他の研究概念には誤った詳細リンクを置かない。
+- 改善だけが Frontier を更新する。再現・反証・失敗は研究記録として区別し、契約に欠陥があれば元のプログラムを凍結して後継を開始する。
+- GitHub リポジトリは非公開。リンクにはアクセス権が必要と表示し、公開の説明や例示はサイト内で読める。
+- データ取得やフォームはないため、ロード中・空・通信エラーの動的状態は対象外。架空の稼働状態や利用実績は表示しない。
+
+## 検証
+
+2026-11-15 にローカル HTTP サーバーで確認した。表示確認は Orca、操作と自動検査は headless Chromium 156 と Playwright を使用。検査用パッケージはリポジトリ外に置き、サイトの依存には含めない。
+
+- 両ページを320 / 360 / 390 / 520 / 600 / 760 / 768 / 1000 / 1024 / 1240 / 1440 / 1920pxで確認。ページ全体の横はみ出しと44px未満のリンクは0件。
+- 390 / 768pxでルートの文字サイズを200%に変更し、はみ出しがないことを確認。
+- Google Fonts の取得を遮断し、390 / 768 / 1440pxで両ページの表示を確認。
+- PCのクリック26件、スマホのタップ24件で全リンクを操作。サイト内の21リンクは目的のページ・要素に到達する。
+- 両ページのPC・スマホで Tab / Shift+Tab、スキップリンクの Enter、フォーカス枠を確認。スマホの表は ArrowRight で横移動する。
+- axe-core 4.14.0を390 / 1440pxで実行し、自動検出違反0件。グラデーションなどの自動判定対象外は別途42組の色を計算し、通常文字の最低比4.78:1、模式図の線3.59:1を確認。
+- `prefers-reduced-motion: reduce` でアニメーション0件、ボタンの遷移時間0秒。サイトのコンソール・JavaScript実行エラー0件。
+- HTMLの構造検査と `git diff --check` を通過。Web Vitals や Lighthouse スコアは未測定。実機Safari・Firefoxでの動作保証は含まない。
+
+HTML の構造検査を再実行する場合:
+
+```sh
+npx --yes html-validate@11.21.1 design/index.html design/program.html \
+  --rule void-style:off --rule no-redundant-role:off
+git diff --check
+```
+
+例外は既存の空要素の記法と、CSSでマーカーを消すリストの明示的な `role="list"` のみ。
+
+| デザイン品質ゲート | 結果と根拠 |
+|---|---|
+| 機能・正確性・アクセシビリティ | PASS: 全リンク操作、レスポンシブ検査、フォーカス・色比検査を実施。サンプルとアクセス制限を明記 |
+| 表現の目的 | PASS: 配色・書体・図・罫線・余白・モーションの採用理由を上表に記録 |
+| 視覚的な強弱 | PASS: 2 / 2 / 1。大きな見出し、代表例、研究一覧、暗色の記録で読み進むリズムを作る |
+| 一貫性 | PASS: 両ページでトークン・ナビゲーション・判定表示を共用。新規ロゴや架空の実績を追加しない |
 
 ## 公開
 
-- Design テンプレートは Cloudflare Workers でホスト中: **https://baikal.shoukitsuda.workers.dev**
-- 再デプロイ（リポジトリルートで実行）: `npx wrangler deploy`。設定はルートの `wrangler.jsonc`（対象: `design/`）。要 Cloudflare 認証（`npx wrangler login`）と `CLOUDFLARE_ACCOUNT_ID`
+公開先: <https://baikal.shoukitsuda.workers.dev>
 
-## 注意
-
-- HTML 内の数値・プログラム名・イベントはすべてサンプルデータ（README のユースケースから採ったプレースホルダ）
-- フォントはシステムスタック（依存ゼロ）。本番ではブランドフォントへ差し替え可能
-- レスポンシブ: 1080px / 1024px（How it works 図） / 720px ブレークポイント。モバイルでは Frontier テーブルと How it works 図は横スクロール
+`master` への push で `.github/workflows/deploy.yml` が Cloudflare Workers にデプロイする。配信対象は `wrangler.jsonc` が指定する `design/`。フィーチャーブランチの変更はPRをマージするまで公開されない。

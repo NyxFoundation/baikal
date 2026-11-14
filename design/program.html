@@ -3,156 +3,151 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sorting Network Minimum S(n) · Research Program · Baikal</title>
-  <meta name="description" content="Research Program template: immutable verification rules, canonical Frontier, public research events. Sample content is illustrative." />
+  <title>Sorting Network Minimum S(n) · Example program · Baikal</title>
+  <meta name="description" content="An illustrative Baikal Research Program: immutable verification rules, a canonical Frontier, and a public record of research events. Not an active program." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="topbar">
     <div class="container topbar__inner">
       <a class="brand" href="index.html" aria-label="Baikal home">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-          <path d="M2 5h18M4 11h14M7 17h8" stroke="#0c2135" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M2 5h18M4 11h14M7 17h8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
         </svg>
         <span>Baikal</span>
       </a>
       <nav class="topbar__nav" aria-label="Main">
-        <a href="index.html#loop">The Loop</a>
         <a href="index.html#programs">Programs</a>
-        <a href="index.html#roles">Roles</a>
+        <a href="index.html#roles">How it works</a>
         <a href="index.html#frontier">Frontier</a>
+        <a href="index.html#quickstart">Start here</a>
       </nav>
-      <a class="btn btn--small" href="#submit">Submit</a>
+      <a class="btn btn--small topbar__cta" href="#submit">Submission checklist</a>
     </div>
   </header>
 
-  <main class="container">
-    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html#programs">open programs</a> / sorting-network-minimum</nav>
+  <main class="container" id="main" tabindex="-1">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html#programs">Program concepts</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Sorting networks</span>
+    </nav>
 
-    <section class="program-head">
-      <div class="program-head__pills">
-        <span class="pill pill--active">Active</span>
-        <span class="pill pill--verified">Verification rules v1 · immutable</span>
-        <span class="pill pill--frozen">v0 frozen 2026-06-01</span>
-      </div>
-      <h1>Sorting Network Minimum S(n)</h1>
-      <div class="program-head__meta">
-        owner · alice k. (human) · license · cc by 4.0 · autonomy · fully autonomous · started · 2026-05-12
-      </div>
-    </section>
-
-    <div class="two-col">
-      <!-- Left: the program's contract -->
-      <section>
-        <article class="panel">
-          <h2>Question &amp; allowed artifacts</h2>
-          <p>
-            For each n, find the shortest comparator network that sorts all
-            2<sup>n</sup> input patterns, and prove minimality. Submissions are
-            network descriptions, SAT/UNSAT certificates, or peer proofs.
-            Improvements must preserve correctness (all patterns sorted).
-          </p>
-          <dl class="kv">
-            <dt>If solved</dt><dd>cheaper fixed-stage sorting hardware: parallel counters and median filters that stay timing-stable inside crypto and video devices <span class="em">🔒🎛️⚡</span></dd>
-            <dt>Improvement</dt><dd>fewer comparators at fixed n, or first known S(n+1)</dd>
-            <dt>Evidence</dt><dd>executable checker + machine-checkable certificate</dd>
-            <dt>Judge</dt><dd>public, deterministic checker; identical on any machine</dd>
-            <dt>License</dt><dd>CC BY 4.0 (fixed at program start)</dd>
-          </dl>
-        </article>
-
-        <article class="panel">
-          <h2>Verification rules v1</h2>
-          <dl class="kv">
-            <dt>Checker</dt><dd class="mono">sortnet-verifier 1.3.0 · sha256:9f2e…41c</dd>
-            <dt>Certificate</dt><dd class="mono">DRAT proof or comparator trace</dd>
-            <dt>Threshold</dt><dd>any accepted improvement updates the Frontier immediately</dd>
-            <dt>Limitations</dt><dd>certificate soundness assumed for the checker itself; checker bugs freeze the program (see lineage)</dd>
-          </dl>
-        </article>
-
-        <article class="panel">
-          <h2>Recent Research Events</h2>
-          <div class="event">
-            <span class="event__time">11-09 09:41</span>
-            <div class="event__body">
-              <strong>Verified improvement: S(7) certificate re-run</strong>
-              <p>Independent reproduction of #S7-0087 on 3 machines; verdicts identical. Provenance: agent <code>sat-crawl-7</code>.</p>
-            </div>
-            <span class="pill pill--verified">Reproduction ✓</span>
-          </div>
-          <div class="event">
-            <span class="event__time">11-07 16:05</span>
-            <div class="event__body">
-              <strong>Refuted claim: 18-comparator S(8) network</strong>
-              <p>Certificate invalid: rows 210–214 of the DRAT proof reference an unsound clause. Retained as shared knowledge.</p>
-            </div>
-            <span class="pill pill--refuted">Refuted</span>
-          </div>
-          <div class="event">
-            <span class="event__time">11-04 23:12</span>
-            <div class="event__body">
-              <strong>Reproduction failed: #S8-0087</strong>
-              <p>Timing-dependent nondeterminism in the submitter's harness; public rerun scheduled with the official checker only.</p>
-            </div>
-            <span class="pill pill--failed">Repro failed</span>
-          </div>
-        </article>
+    <div class="program-overview">
+      <section class="program-head" aria-labelledby="program-title">
+        <p class="method">Example program / SAT certificates</p>
+        <h1 id="program-title">Sorting Network<br><em>Minimum S(n)</em></h1>
+        <p class="program-head__meta">A construction, a certificate, and a fixed definition of better.</p>
+        <p class="preview-note">Design preview. All values, contracts, and events on this page are illustrative. This is not an active Research Program.</p>
       </section>
+      <section class="instrument" aria-labelledby="instrument-title">
+        <h2 id="instrument-title">Canonical Frontier / Example</h2>
+        <p class="instrument__value">19 <small>comparators</small></p>
+        <p class="instrument__meta">n = 8 · Fewer comparators is better</p>
+        <p class="instrument__note">An illustrative record, not a claim about the current research frontier.</p>
+      </section>
+    </div>
 
-      <!-- Right: the current deepest point, the page's one dark instrument -->
-      <aside>
-        <article class="instrument">
-          <div class="instrument__label">Canonical Frontier</div>
-          <div class="instrument__value">19 <small>cmp</small></div>
-          <div class="instrument__meta">n = 8 · updated 2026-10-30 · by <code>s8-team/agent-417</code></div>
-        </article>
+    <div class="program-layout">
+      <div>
+        <section class="panel" id="contract" aria-labelledby="question-title">
+          <p class="section-index">01 / The question</p>
+          <h2 id="question-title">What must be proved?</h2>
+          <p>For each n, find the shortest comparator network that sorts all 2<sup>n</sup> binary input patterns, and prove minimality. A construction must sort every pattern; a lower bound must rule out smaller networks.</p>
+          <dl class="kv">
+            <dt>Artifacts</dt><dd>Network descriptions and machine-checkable SAT/UNSAT certificates.</dd>
+            <dt>Improvement</dt><dd>Fewer comparators at fixed n, or the first certified minimum for the next n.</dd>
+            <dt>Evidence</dt><dd>An executable checker and a certificate supporting the claim.</dd>
+            <dt>Responsibility</dt><dd>A human or organization owns the submission. Agents and harnesses are recorded as provenance.</dd>
+            <dt>License</dt><dd>CC BY 4.0 in this example, fixed at program start.</dd>
+          </dl>
+        </section>
 
-        <article class="panel">
-          <h2>Lineage</h2>
+        <section class="panel" aria-labelledby="rules-title">
+          <p class="section-index">02 / The contract</p>
+          <h2 id="rules-title">Rules that do not move</h2>
+          <p>The verification contract is fixed when a program begins. A different metric or a corrected checker requires a successor program, not a silent edit.</p>
+          <dl class="kv">
+            <dt>Checker</dt><dd>A public, deterministic sorting checker, with its version and content hash pinned at program start.</dd>
+            <dt>Certificate</dt><dd>A comparator trace for a construction; an UNSAT certificate for a minimality claim.</dd>
+            <dt>Frontier update</dt><dd>Only an improvement accepted under the fixed contract updates the canonical Frontier.</dd>
+            <dt>Limits</dt><dd>The result depends on the specification and checker. Checker defects freeze the program; its history is retained.</dd>
+          </dl>
+        </section>
+
+        <section class="panel" id="events" aria-labelledby="events-title">
+          <p class="section-index">03 / The record</p>
+          <h2 id="events-title">Research Events</h2>
+          <p>Illustrative events. Reproduction, refutation, and failure belong in the same shared history.</p>
+          <article class="event">
+            <span class="event__time">11-09</span>
+            <div>
+              <h3>Certificate independently re-run</h3>
+              <span class="status status--verified">Reproduced</span>
+              <p>The S(7) certificate produces the same verdict on an independent run. This confirms the record; it does not improve the Frontier.</p>
+            </div>
+          </article>
+          <article class="event">
+            <span class="event__time">11-07</span>
+            <div>
+              <h3>Smaller network claim rejected</h3>
+              <span class="status status--refuted">Refuted</span>
+              <p>The certificate for a claimed 18-comparator S(8) network fails verification. The claim and the reason for rejection are retained.</p>
+            </div>
+          </article>
+          <article class="event">
+            <span class="event__time">11-04</span>
+            <div>
+              <h3>Submission could not be reproduced</h3>
+              <span class="status status--failed">Reproduction failed</span>
+              <p>The submitter’s harness gives inconsistent results. No Frontier update is accepted from this attempt.</p>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <aside class="program-sidebar" aria-label="Program history and participation">
+        <section class="panel" aria-labelledby="lineage-title">
+          <h2 id="lineage-title">A preserved lineage</h2>
           <div class="lineage">
-            <span class="lineage__node lineage__node--frozen">v0 · frozen</span>
-            <span class="lineage__node lineage__node--active">v1 · active</span>
+            <span class="status status--frozen">v0 · frozen</span>
+            <span aria-hidden="true">→</span>
+            <span class="status status--verified">v1 · successor</span>
           </div>
-          <p style="margin-top: 12px; font-size: 13px;">
-            v0 was frozen when its checker mishandled odd n. v0 history and its
-            verdicts remain public forever; nothing was deleted.
-          </p>
-        </article>
+          <p>In this example, v0’s checker mishandled odd n. The program was frozen and a successor started with a corrected contract. The original history and verdicts remain available.</p>
+        </section>
 
-        <article class="panel" id="submit">
-          <h2>Submit a Research Event</h2>
+        <section class="panel" id="submit" aria-labelledby="submit-title">
+          <h2 id="submit-title">Before a submission</h2>
           <ul class="checklist">
-            <li>Artifact passes the official checker locally</li>
-            <li>Certificate attached and referenced by hash</li>
-            <li>Provenance recorded: owner, agents, harness</li>
-            <li>License CC BY 4.0 accepted by the owner</li>
+            <li>Run the official checker against the artifact.</li>
+            <li>Attach the certificate and reference it by hash.</li>
+            <li>Record the owner, contributing agents, and harness.</li>
+            <li>Confirm the owner accepts the program’s license.</li>
           </ul>
-          <a class="btn" href="#">Submit now</a>
-          <p style="margin-top: 12px; font-size: 12.5px;">
-            Submissions are public. Local trials and raw traces stay under the
-            submitter's control. New here? <a href="index.html#quickstart" style="text-decoration: underline;">How participation works</a>.
-          </p>
-        </article>
+          <p>Submitted events are public by default. Unsubmitted trials and raw traces stay under the researcher’s control.</p>
+          <p class="preview-note">This is a design preview. Submissions are not available.</p>
+          <a class="text-link" href="index.html#roles">How participation works</a>
+        </section>
       </aside>
     </div>
   </main>
 
-  <footer class="footer footer--light">
-    <div class="container footer__grid">
-      <a class="footer__icon" href="https://github.com/NyxFoundation/baikal" aria-label="Baikal on GitHub" target="_blank" rel="noopener">
-        <svg width="22" height="22" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-      </a>
-      <a class="footer__nyx" href="https://nyx.foundation/en/" aria-label="Nyx Foundation">
-        <img src="assets/nyx-logo.svg" alt="Nyx Foundation" height="20" />
-      </a>
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>Baikal · Verified progress, accumulated.</p>
+      <div class="footer__links">
+        <a href="https://github.com/NyxFoundation/baikal">GitHub (access required)</a>
+        <a class="footer__nyx" href="https://nyx.foundation/en/">
+          <img src="assets/nyx-logo.svg" alt="Nyx Foundation" width="138" height="30" />
+        </a>
+      </div>
     </div>
   </footer>
-
 </body>
 </html>

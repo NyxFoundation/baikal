@@ -1,55 +1,37 @@
-/* Baikal design tokens — "The Dive".
-   The page is a descent into Lake Baikal:
-   frost surface at the top, the verified abyss at the bottom.
-   Depth of color = certainty of record. */
-
+/* Lake light, deep water, and machine verdicts. */
 :root {
-  /* Depth bands: surface → shelf → slope → abyss */
   --surface-0: #f6fbfe;
-  --surface-1: #eef6fb;
-  --shelf: #ddeef7;
-  --slope: #c7e2f1;
-  --abyss-700: #14324a;
-  --abyss-800: #0d2438;
-  --abyss-900: #081a29;
-  /* Abyss: telemetry in near-total darkness */
-  --abyss-950: #050f19;
-  --abyss-deep: #03080e;
-  --abyss-black: #020809;
+  --surface-1: #eff6f9;
+  --shelf: #e7f0f4;
+  --slope: #d4e5ed;
+  --abyss-800: #102c3e;
+  --abyss-950: #081b28;
+  --abyss-deep: #06141e;
 
-  /* Ink: frozen water in solid state (text on light bands) */
   --ink: #0c2135;
-  --ink-soft: #3f5f75;
-  --ink-faint: #7b98ac;
-
-  /* Machine verdicts: the only colors allowed to settle the truth */
-  --verified: #0a7f6e;
-  --verified-glow: #19d3b7;
-  --refuted: #c94f31;
-  --failed: #a86f1c;
-  --frozen: #68869b;
-
-  /* Instrument lines & paper */
-  --rule: rgba(12, 33, 53, 0.14);
-  --rule-strong: rgba(12, 33, 53, 0.32);
+  --ink-soft: #415e70;
+  --ink-faint: #496574;
   --paper: #ffffff;
-  --paper-veil: rgba(255, 255, 255, 0.64);
+  --rule: #c0d0d9;
+  --rule-strong: #829ba9;
 
-  /* Light-on-abyss echoes */
+  --verified: #086958;
+  --refuted: #a43e2b;
+  --failed: #805615;
+  --frozen: #526e7e;
+  --verified-light: #91ddc5;
+  --refuted-light: #ffb4a1;
+
   --frost: #f3fafd;
-  --frost-mid: #a9c9d8;
-  --frost-dim: #628aa0;
-  --rule-frost: rgba(243, 250, 253, 0.16);
+  --frost-mid: #b7cedb;
+  --frost-dim: #9ab5c5;
+  --rule-frost: #365263;
 
-  /* Typography: characterful, editor-scientist pairing */
   --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-ui: "Space Grotesk", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Rhythm */
-  --radius-s: 4px;
-  --radius-m: 8px;
-  --radius-l: 14px;
+  --radius-s: 3px;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -61,4 +43,5 @@
   --space-9: 96px;
   --space-10: 128px;
   --container: 1180px;
+  --gutter: clamp(20px, 4vw, 40px);
 }
