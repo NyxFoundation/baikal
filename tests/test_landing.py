@@ -2,6 +2,7 @@
 
 from html.parser import HTMLParser
 from pathlib import Path
+import json
 import unittest
 from urllib.parse import unquote, urlsplit
 
@@ -13,10 +14,26 @@ class Document(HTMLParser):
     def __init__(self, path):
         super().__init__()
         self.elements = []
+        self.programs = []
+        self.current_program = None
         self.feed(path.read_text())
 
     def handle_starttag(self, tag, attrs):
-        self.elements.append((tag, dict(attrs)))
+        element = (tag, dict(attrs))
+        self.elements.append(element)
+        if tag == "article":
+            self.current_program = {"elements": [], "text": []}
+        if self.current_program is not None:
+            self.current_program["elements"].append(element)
+
+    def handle_data(self, data):
+        if self.current_program is not None:
+            self.current_program["text"].append(data)
+
+    def handle_endtag(self, tag):
+        if tag == "article" and self.current_program is not None:
+            self.programs.append(self.current_program)
+            self.current_program = None
 
     def attributes(self, tag):
         return [attrs for name, attrs in self.elements if name == tag]
@@ -30,12 +47,33 @@ class LandingTests(unittest.TestCase):
     def setUp(self):
         self.page = Document(DESIGN / "index.html")
 
-    def test_should_identify_japanese_content_and_page_landmarks(self):
-        self.assertEqual(self.page.attributes("html")[0]["lang"], "ja")
+    def test_should_preserve_english_ui_and_page_landmarks(self):
+        self.assertEqual(self.page.attributes("html")[0]["lang"], "en")
+        for filename in ("index.html", "landing.css", "landing.js"):
+            self.assertNotRegex((DESIGN / filename).read_text(),
+                                r"[\u3040-\u30ff\u3400-\u9fff]", filename)
         for tag in ("h1", "main", "header", "footer"):
             self.assertEqual(len(self.page.attributes(tag)), 1, tag)
         self.assertTrue(self.page.attributes("nav"))
         self.assertEqual(len(self.page.ids), len(set(self.page.ids)))
+
+    def test_should_preserve_all_eight_original_programs_and_their_details(self):
+        fixture = Path(__file__).parent / "fixtures" / "original_programs.json"
+        expected = json.loads(fixture.read_text())["programs"]
+        self.assertEqual(len(expected), 8)
+        self.assertEqual(len(self.page.programs), len(expected))
+        for actual, original in zip(self.page.programs, expected):
+            with self.subTest(program=original["title"]):
+                text = " ".join(" ".join(actual["text"]).split())
+                for field in original.values():
+                    self.assertIn(field, text)
+                figures = [a for tag, a in actual["elements"] if tag == "svg"]
+                self.assertEqual(len(figures), 1)
+                self.assertEqual(figures[0].get("role"), "img")
+                self.assertTrue(figures[0].get("aria-label"))
+                links = [a for tag, a in actual["elements"] if tag == "a"]
+                self.assertEqual([a.get("href") for a in links], ["program.html"])
+                self.assertIn("Illustrative", text)
 
     def test_should_isolate_homepage_styles_from_program_detail(self):
         styles = [a["href"] for a in self.page.attributes("link")
@@ -85,15 +123,16 @@ class LandingTests(unittest.TestCase):
 
     def test_should_declare_concept_stage_without_a_fictional_cli(self):
         source = (DESIGN / "index.html").read_text()
-        self.assertIn("構想段階", source)
-        self.assertIn("ベータ版", source)
-        self.assertIn("概念図", source)
+        self.assertIn("concept stage", source)
+        self.assertIn("Beta", source)
+        self.assertIn("Conceptual illustration", source)
+        self.assertIn("shared program template", source)
         self.assertNotIn("get.baikal.dev", source)
         self.assertNotIn("data-copy", source)
 
     def test_should_not_show_access_restrictions_for_public_research(self):
         source = (DESIGN / "index.html").read_text()
-        for notice in ("要アクセス権", "アクセス権が必要", "リポジトリは非公開"):
+        for notice in ("Access required", "Private repository", "Request access"):
             self.assertNotIn(notice, source)
 
     def test_should_resolve_all_accessible_labels_and_descriptions(self):
