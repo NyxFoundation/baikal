@@ -125,10 +125,14 @@ class LandingTests(unittest.TestCase):
         source = (DESIGN / "index.html").read_text()
         self.assertIn("concept stage", source)
         self.assertIn("Beta", source)
-        self.assertIn("Conceptual illustration", source)
         self.assertIn("shared program template", source)
         self.assertNotIn("get.baikal.dev", source)
         self.assertNotIn("data-copy", source)
+
+    def test_should_omit_unrequested_disclaimer_for_decorative_art(self):
+        source = (DESIGN / "index.html").read_text()
+        self.assertNotIn("Conceptual illustration of exploration and verification.", source)
+        self.assertNotIn("Not research data.", source)
 
     def test_should_not_show_access_restrictions_for_public_research(self):
         source = (DESIGN / "index.html").read_text()
