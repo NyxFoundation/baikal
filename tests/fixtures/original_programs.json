@@ -1,0 +1,53 @@
+{
+  "source": "3ca7ae1:design/index.html (illustrative design content, not live research results)",
+  "programs": [
+    {
+      "title": "Sorting Network Minimum S(n)",
+      "method": "SAT certificate",
+      "frontier": "n = 8 · 19 comparators",
+      "description": "Shrink the shortest comparator network that sorts n items in fixed stages."
+    },
+    {
+      "title": "R(5,5) Sandwich Race",
+      "method": "Enumeration proof",
+      "frontier": "43 ≤ R(5,5) ≤ 46",
+      "description": "Close the 43–46 gap on the fifth diagonal Ramsey number, from constructions below and proofs above."
+    },
+    {
+      "title": "Marton (PFR) Constant",
+      "method": "Lean 4 kernel",
+      "frontier": "c = 11 · improving",
+      "description": "Drive down the additive-combinatorics constant behind sum-product estimates, fully machine-checked in Lean."
+    },
+    {
+      "title": "Kissing Number Gap",
+      "method": "Witness + LP bound",
+      "frontier": "dims 17–24 · open",
+      "description": "Pin each dimension's maximum kissing number between lattice constructions and LP upper bounds."
+    },
+    {
+      "title": "DNA Storage Coding Capacity",
+      "method": "Capacity bounds",
+      "frontier": "1.60 achieved · 1.84 ceiling bits/nt",
+      "description": "Bits per nucleotide for error-bounded DNA read/write: constructions push the lower bound, combinatorial converses cap it from above."
+    },
+    {
+      "title": "mRNA Stability Capacity",
+      "method": "DP checker",
+      "frontier": "−12.4 kcal · verified to n = 10 kb",
+      "description": "For each length and codon constraint, what is the most stable sequence manufacturable? A folding DP checker settles candidates exactly."
+    },
+    {
+      "title": "Plastome Assembly Audit",
+      "method": "k-mer certificate",
+      "frontier": "312 audited · 17 refuted",
+      "description": "Published chloroplast and mitochondrial genomes hide misassemblies at inverted repeats. A k-mer certificate decides closure and IR placement per record."
+    },
+    {
+      "title": "CRISPR Off-Target Audit",
+      "method": "Enumeration sweep",
+      "frontier": "214 “no off-target” claims · 9 refuted",
+      "description": "Papers say “no off-target sites found.” An exhaustive sweep inside a fixed edit distance decides whether the claim was actually complete."
+    }
+  ]
+}
