@@ -36,19 +36,23 @@ function createPoints() {
   });
 }
 
-function projectPoint(position, turn) {
-  const [x, y, z] = position;
-  const yaw = 0.55 + turn * 0.65;
-  const pitch = 0.7;
-  const roll = -0.48;
-  const rx = x * Math.cos(yaw) - z * Math.sin(yaw);
-  const rz = x * Math.sin(yaw) + z * Math.cos(yaw);
-  const ry = y * Math.cos(pitch) - rz * Math.sin(pitch);
-  const depth = y * Math.sin(pitch) + rz * Math.cos(pitch);
-  return [rx * Math.cos(roll) - ry * Math.sin(roll), rx * Math.sin(roll) + ry * Math.cos(roll), depth];
+function createProjection(angle) {
+  const cosYaw = Math.cos(0.55 + angle);
+  const sinYaw = Math.sin(0.55 + angle);
+  const cosPitch = Math.cos(0.7);
+  const sinPitch = Math.sin(0.7);
+  const cosRoll = Math.cos(-0.48);
+  const sinRoll = Math.sin(-0.48);
+  return ([x, y, z]) => {
+    const rx = x * cosYaw - z * sinYaw;
+    const rz = x * sinYaw + z * cosYaw;
+    const ry = y * cosPitch - rz * sinPitch;
+    const depth = y * sinPitch + rz * cosPitch;
+    return [rx * cosRoll - ry * sinRoll, rx * sinRoll + ry * cosRoll, depth];
+  };
 }
 
-function paintField(canvas, context, points, turn, color) {
+function paintField(canvas, context, points, angle, color) {
   const { width, height } = canvas.getBoundingClientRect();
   if (!width || !height) return;
   const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -61,9 +65,11 @@ function paintField(canvas, context, points, turn, color) {
   context.setTransform(ratio, 0, 0, ratio, 0, 0);
   context.clearRect(0, 0, width, height);
   context.fillStyle = color;
-  const scale = Math.min(width * 0.175, height * 0.19);
+  const project = createProjection(angle);
+  // Leave room for the dispersed points throughout a complete rotation.
+  const scale = Math.min(width, height) * 0.12;
   for (const point of points) {
-    const [x, y, z] = projectPoint(point.position, turn);
+    const [x, y, z] = project(point.position);
     const perspective = 7 / (7 + z);
     const size = Math.max(0.75, width / 480) * perspective;
     context.globalAlpha = Math.min(1, (0.55 - z * 0.14) * point.opacity);
@@ -72,43 +78,59 @@ function paintField(canvas, context, points, turn, color) {
   context.globalAlpha = 1;
 }
 
+function createFieldAnimation(paint) {
+  let state = { active: false, frame: null, time: null, angle: 0 };
+  const draw = timestamp => {
+    const elapsed = state.time === null ? 0 : timestamp - state.time;
+    const angle = state.active
+      ? (state.angle + elapsed * Math.PI * 2 / 90000) % (Math.PI * 2) : state.angle;
+    state = { ...state, frame: null, time: state.active ? timestamp : null, angle };
+    paint(angle);
+    if (state.active) schedule();
+  };
+  const schedule = () => {
+    if (state.frame !== null) return;
+    state = { ...state, frame: requestAnimationFrame(draw) };
+  };
+  return {
+    setActive(active) {
+      if (!active && state.frame !== null) cancelAnimationFrame(state.frame);
+      state = { ...state, active, frame: active ? state.frame : null,
+        time: active && state.active ? state.time : null };
+      if (active) schedule();
+    },
+    redraw: schedule,
+  };
+}
+
 function initField() {
   const canvas = document.getElementById("frontier-field");
   const context = canvas.getContext("2d");
   if (!context) return;
-  const hero = document.querySelector(".hero");
   const button = document.querySelector(".motion-toggle");
   const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
   const color = getComputedStyle(document.documentElement).getPropertyValue("--blue").trim();
   const points = createPoints();
-  let state = { paused: false, visible: true, pending: false, turn: 0 };
-  const schedule = () => {
-    if (state.pending || !state.visible || document.hidden) return;
-    state = { ...state, pending: true };
-    requestAnimationFrame(() => {
-      const turn = state.paused || preference.matches ? state.turn
-        : Math.max(0, Math.min(1, -hero.getBoundingClientRect().top / hero.offsetHeight));
-      state = { ...state, pending: false, turn };
-      paintField(canvas, context, points, turn, color);
-    });
-  };
+  const animation = createFieldAnimation(angle => paintField(canvas, context, points, angle, color));
+  let state = { paused: false, visible: false };
   const updateMotion = () => {
     button.disabled = preference.matches;
     button.setAttribute("aria-pressed", String(state.paused || preference.matches));
-    schedule();
+    const onScreen = state.visible && !document.hidden;
+    animation.setActive(onScreen && !state.paused && !preference.matches);
+    if (onScreen) animation.redraw();
   };
   button.addEventListener("click", () => {
     state = { ...state, paused: !state.paused };
     updateMotion();
   });
   preference.addEventListener("change", updateMotion);
-  new ResizeObserver(schedule).observe(canvas);
+  new ResizeObserver(updateMotion).observe(canvas);
   new IntersectionObserver(([entry]) => {
     state = { ...state, visible: entry.isIntersecting };
-    schedule();
+    updateMotion();
   }).observe(canvas);
-  window.addEventListener("scroll", schedule, { passive: true });
-  document.addEventListener("visibilitychange", schedule);
+  document.addEventListener("visibilitychange", updateMotion);
   document.documentElement.classList.add("has-field");
   button.hidden = false;
   updateMotion();
