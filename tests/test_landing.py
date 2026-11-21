@@ -86,11 +86,21 @@ class LandingTests(unittest.TestCase):
     def test_should_declare_concept_stage_without_a_fictional_cli(self):
         source = (DESIGN / "index.html").read_text()
         self.assertIn("構想段階", source)
+        self.assertIn("ベータ版", source)
         self.assertIn("概念図", source)
-        self.assertIn("アクセス権が必要", source)
-        self.assertIn("repository-access", self.page.ids)
         self.assertNotIn("get.baikal.dev", source)
         self.assertNotIn("data-copy", source)
+
+    def test_should_not_show_access_restrictions_for_public_research(self):
+        source = (DESIGN / "index.html").read_text()
+        for notice in ("要アクセス権", "アクセス権が必要", "リポジトリは非公開"):
+            self.assertNotIn(notice, source)
+
+    def test_should_resolve_all_accessible_labels_and_descriptions(self):
+        for _, attrs in self.page.elements:
+            for attribute in ("aria-labelledby", "aria-describedby"):
+                for target in attrs.get(attribute, "").split():
+                    self.assertIn(target, self.page.ids, attribute)
 
 
 if __name__ == "__main__":

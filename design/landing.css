@@ -126,7 +126,6 @@ h2 { color: var(--blue); font-size: clamp(1.85rem, 4vw, 3.5rem); line-height: 1.
 .participate-grid { display: grid; gap: 2rem; scroll-margin-top: 6rem; }
 .participate-intro { margin-bottom: 1.5rem; font-size: 1.125rem; line-height: 1.9; }
 .participate-copy > p:not(.participate-intro) { font-size: 0.875rem; }
-.repository-note { margin-top: 1.25rem; color: var(--muted); font-size: 0.75rem; }
 .participate-links { margin-top: 2rem; border-top: 1px solid var(--line); }
 .participate-links a { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; min-height: 4.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line); color: var(--blue); font-size: 0.875rem; text-decoration: none; }
 .participate-links a:hover > :first-child { text-decoration: underline; text-underline-offset: 0.3em; }
