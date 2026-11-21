@@ -1,38 +1,38 @@
 # Baikal
 
-> 人類が証明・保証できる範囲を広げる。Baikal（バイカル）は、成果の検証を機械で判定可能な形式的手続きに限定する、形式検証に特化した研究基盤をつくるプロジェクトである。
+> Widen what humanity can prove and guarantee. Baikal is a research platform specialized in formal verification, where every result is checked only by machine-decidable formal procedures.
 
 ## Vision
 
-Baikal は、人間と多様な AI エージェントが、重要な未解決問題に継続的に取り組むためのオープンな研究プロトコルである。
+Baikal is an open research protocol for humans and diverse AI agents to keep working on important open problems.
 
-研究者は、問いを投げて回答を待つのではない。問い、現在の基準、提出物、検証方法を **Research Program** として定義する。人間や AI は仮説を立て、実験し、結果と証拠を提出する。検証済みの改善だけが共有された **Frontier** を更新し、次の研究者はその地点から再開する。
+A researcher does not merely pose a question and wait. They define the question, the current baseline, the deliverables, and the verification method as a **Research Program**. Humans and AI form hypotheses, run experiments, and submit results with evidence. Only verified improvements update a shared **Frontier**; the next researcher resumes from there.
 
-目指すのは、一度きりの発見を生む AI ではない。人やモデルが交代しても止まらず、成功・失敗・反証を継承しながら進み続ける研究そのものの基盤である。
+The goal is not an AI that produces one-off discoveries. Baikal is infrastructure for research itself — research that keeps running as people and models change, inheriting successes, failures, and refutations.
 
 ### Machine-checkable truth only
 
-Baikal が扱う Research Program は、提出物の正否を機械で判定できることを条件とする。形式証明、証明書や証人、モデル検査、実行可能 checker、形式仕様との組み合わせがその手段である。曖昧な信頼や権威を検証の根拠にしない。
+A Baikal Research Program is admitted on the condition that submissions can be judged correct or incorrect by a machine: formal proofs, certificates and witnesses, model checking, executable checkers, or a combination. Vague trust or authority is never the basis of verification.
 
-これは制限であると同時に野望である。AI が答えを大量に生む時代に、証明と checker を通った正しさだけが、人やモデルが交代しても崩れない資産として積み上がる。ただし、数理モデル内での証明と、現実の妥当性を混同しない。後者は実験と観測の領域であり、この場の管轄外である。
+This is a restriction and an ambition at once. In an era where AI produces answers in bulk, only correctness that passes proofs and checkers accumulates as an asset that survives changes of people and models. Do not conflate a proof inside a mathematical model with real-world validity: the latter belongs to experiment and observation, and is out of scope here.
 
-同時に、まだ形式化されていない大胆な仮説の入口でもある。課題とは別に、問い、仕様、checker そのものを研究対象として育てる。ユニークな仮説が、形式検証を通過して信頼できる発明に変わる場所にする。
+It is also an entry point for bold hypotheses that are not yet formalized. Beyond the assignments, the questions, specifications, and checkers themselves are objects of research — the place where a unique hypothesis becomes a trusted invention through formal verification.
 
 ## Why
 
-現在の研究は、成果だけでなく過程も断片化している。
+Research today is fragmented in process as well as in results.
 
-- 実験条件や失敗が個人のノート、会話、端末に閉じ込められる
-- 論文やベンチマークの結果を第三者が再現できない
-- 新しい参加者が、過去と同じ探索や失敗を繰り返す
-- AI が流暢な主張を生成しても、その根拠と検証状態が分からない
-- モデルや研究者が変わるたびに、研究の文脈が失われる
+- Experiments and failures are trapped in private notes, chats, and terminals.
+- Paper and benchmark results cannot be reproduced by third parties.
+- New participants repeat the same searches and the same dead ends.
+- AI produces fluent claims whose grounds and verification status are unknown.
+- Research context is lost whenever models or researchers change.
 
-Baikal の第一の使命は、研究の再現性を標準にすることである。その信頼の上に、課題、研究能力、計算資源、検証能力が出会う世界最大の公開研究市場を育てる。
+Baikal's first mission is to make reproducibility the standard of research. On that trust it grows the world's largest open research market, where assignments, research capability, compute, and verification capacity meet.
 
 ## Core Idea
 
-研究を、次の反復可能なループとして扱う。
+Treat research as a repeatable loop.
 
 ```mermaid
 flowchart LR
@@ -47,189 +47,181 @@ flowchart LR
     K --> H
 ```
 
-Frontier を進めた成果だけでなく、提出された失敗、反証、再現結果も共有知として残す。ただし、公式の基準を更新できるのは、あらかじめ合意された検証を通過した改善だけである。
+Failures, refutations, and reproduction results are kept as shared knowledge, alongside improvements that move the Frontier. Only improvements that pass the pre-agreed verification may update the official baseline.
 
 ## Principles
 
 ### 1. Verifiability over authority
 
-誰が主張したかではなく、どの条件で、どの証拠により、誰が再検証できるかを重視する。
+What matters is not who said it, but under what conditions, with what evidence, and who can re-check it.
 
 ### 2. Cumulative progress over isolated wins
 
-研究成果を単発の提出で終わらせない。検証済みの改善を共有 Frontier へ昇格し、後続の参加者がその成果を基準として研究を続ける。
+Results do not end as one-off submissions. Verified improvements are promoted to a shared Frontier, and later participants continue from that baseline.
 
 ### 3. Reproducible failures are knowledge
 
-改善しなかった実験、反例、再現失敗も、条件と証拠が明確なら価値がある。同じ行き止まりを繰り返さないことも研究の進歩である。
+Experiments that did not improve, counterexamples, and reproduction failures have value when their conditions and evidence are clear. Not repeating the same dead end is progress.
 
 ### 4. One canonical Frontier per Research Program
 
-各 Research Program は、単一の公式 Frontier を持つ。何が「改善」であるかは開始時の検証契約によって決まり、途中で意味を変えない。
-
-(異なる目的、仮定、指標を扱いたい場合は、別の Research Program として定義する)
+Each Research Program has a single official Frontier. What counts as "improvement" is fixed by the verification contract at start and does not drift. (Different aims, assumptions, or metrics define a different program.)
 
 ### 5. Immutable verification contracts
 
-Research Program の開始後、検証契約は変更しない。checker の欠陥や指標の攻略が判明した場合、既存プログラムと履歴を凍結し、修正版を後継プログラムとして開始する。
-
-旧成果は削除しない。「どの契約の下で正当だったか」を履歴として保持する。
+Once a program starts, its verification contract does not change. If a checker defect or a metric exploit is found, the program and its history freeze, and a corrected successor starts. Old results are never deleted: history preserves under which contract they were valid.
 
 ### 6. Public by default
 
-公開された問い、提出、証拠、判定、Frontier、帰属は、誰でも監査・再検証・継承できることを標準とする。
+Published questions, submissions, evidence, verdicts, Frontiers, and attribution can be audited, re-verified, and inherited by anyone.
 
-将来は、内容を明かさずに正しさや改善を証明する技術を用い、企業や組織の非公開研究にも拡張する。秘匿性は検証可能性を捨てる理由にしない。
+Later, techniques that prove correctness or improvement without revealing content will extend Baikal to private corporate research. Privacy is never a reason to give up verifiability.
 
 ### 7. Agent neutrality
 
-特定のモデル、AI 企業、エージェント、ハーネスを研究の中心に置かない。人間、Claude、Codex、独自 solver、将来のモデルが、同じ研究契約の下で参加できる。
-
-(AI は provenance として記録し、公開・提出に対する責任は人間または組織が負う)
+No model, AI company, agent, or harness sits at the center. Humans, Claude, Codex, custom solvers, and future models all participate under the same research contracts. (AI work is recorded as provenance; humans or organizations own responsibility for publication and submission.)
 
 ### 8. Configurable autonomy
 
-研究に必要な自律性は課題ごとに異なる。完全自律、段階的な人間承認、人間主導の補助など、Research Program の所有者が開始時に方針を定める。
+The autonomy a program needs differs by problem. Fully autonomous, staged human approval, human-led assistance — the program owner sets the policy at start.
 
 ### 9. Open protocol, not a captive platform
 
-公式ホストは、Baikal を利用する最も便利な場所であるべきだが、唯一の正史にはならない。研究プログラム、履歴、証拠、Frontier は移植可能であり、別の主体が保存・再検証・運営できるべきである。
-
-(運営サービスが消えても、研究成果と検証手順は残る)
+The official host should be the most convenient place to use Baikal, not the only true record. Programs, history, evidence, and Frontiers are portable: others can preserve, re-verify, and operate them. (If the service disappears, the results and verification procedures remain.)
 
 ## Conceptual Model
 
 ### Research Program
 
-未解決問題を継続的な研究対象へ変換する単位。少なくとも次を宣言する。
+The unit that turns an open problem into continuous research. It declares at least:
 
-- 問いと、その重要性
-- 現在の Frontier
-- 許される変更または提出物
-- 改善の定義
-- 必要な証拠
-- 判定手続き
-- 自律性と責任の方針
-- 公開条件とライセンス
-- 終了または凍結条件
+- the question and why it matters
+- the current Frontier
+- allowed changes or deliverables
+- the definition of improvement
+- required evidence
+- the decision procedure
+- autonomy and responsibility policy
+- publication terms and license
+- termination or freezing conditions
 
-完全自動採点は必須ではない。ただし、「何を提出し、どの証拠で、誰が、どの確度として認めるか」という検証契約を事前に定義できなければならない。
+Fully machine-graded acceptance is not mandatory — but "what is submitted, with what evidence, accepted by whom, with what confidence" must be definable in advance.
 
 ### Research Event
 
-共有される研究の最小単位。仮説、条件、実験、結果、証拠、判定を結びつける。
+The smallest unit of shared research, binding hypothesis, conditions, experiment, result, evidence, and verdict.
 
-成功、失敗、反証、再現、再現失敗を区別して記録する。提出された Research Event は公開する一方、非提出のローカル試行、会話、生の推論トレースは参加者の管理下に置く。
+Success, failure, refutation, reproduction, and reproduction failure are recorded distinctly. Submitted Research Events are published; locally unsubmitted trials, chats, and raw reasoning traces stay under the participant's control.
 
 ### Frontier
 
-Research Program における、現在の公式な最良基準。検証済みの改善によってのみ更新される。
+The current official best baseline of a Research Program, updated only by verified improvements.
 
-Frontier は「真理のすべて」ではない。それは、固定された検証契約の下で、現時点までに共有・確認された最良の出発点である。
+The Frontier is not "all truth". It is the best starting point shared and confirmed to date, under a fixed verification contract.
 
 ### Verification Contract
 
-提出物をどのように評価し、どの証拠を要求し、どの条件で Frontier を更新するかを定める不変の契約。
+The immutable agreement on how submissions are evaluated, what evidence is required, and when the Frontier updates.
 
-実行可能な benchmark、形式証明、証明書や証人、モデル検査、探索結果の checker、形式仕様との組み合わせなど、機械で判定可能な手段を利用できる。検証の強さと限界は明示し、主張の成立は機械的な判定のみで確定する。
+Machine-decidable means are used: executable benchmarks, formal proofs, certificates and witnesses, model checking, checkers over search results, combinations with formal specifications. The strength and limits of verification are stated explicitly; the claim's validity is settled by the machine verdict alone.
 
-検証契約は仕様であり、Ethereum 等のスマートコントラクトではない。契約の本体は、バージョンとハッシュをピン留めされた公開の決定的 checker であり、判定はその再実行で行われる。オンチェーンの verifier contract は、提出物を秘匿したまま検証事実だけを確定する将来の追加機能（Roadmap 節参照）に限定される。
+A verification contract is a specification, not a smart contract like Ethereum's. Its body is a public deterministic checker pinned by version and hash, and decisions are made by re-running it. An on-chain verifier contract is reserved for the future feature of settling verification facts without revealing submissions (see Roadmap).
 
 ## Participants
 
-Baikal は、単純な「課題の出題者」と「回答者」の市場ではない。
+Baikal is not a simple market of "assigners" and "answerers".
 
-- **Program Owners** — 問い、Frontier、検証契約を定義する
-- **Researchers** — 仮説を形成し、実験し、証拠を提出する
-- **AI Agents** — 多様な戦略とツールで研究を並列化する
-- **Verifiers** — checker、証明、再現実験、審査を通じて主張を検証する
-- **Infrastructure Providers** — 計算資源や特殊な実験環境を提供する
-- **Observers and Successors** — 履歴を監査し、成果と失敗を次の研究へ継承する
+- **Program Owners** — define questions, Frontiers, and verification contracts
+- **Researchers** — form hypotheses, experiment, submit evidence
+- **AI Agents** — parallelize research with diverse strategies and tools
+- **Verifiers** — validate claims via checkers, proofs, reproductions, and review
+- **Infrastructure Providers** — offer compute or rare experimental environments
+- **Observers and Successors** — audit history and carry results and failures into the next program
 
-これらの役割は固定ではない。一人または一つの組織が複数の役割を担うこともできる。
+Roles are not fixed: one person or one organization can hold several.
 
 ## Intended Use Cases
 
-初期の旗艦領域はまだ固定しない。最初に適しているのは、改善と検証を明確に定義しやすい課題である。
+The flagship area is deliberately not fixed. Best fit first: problems where improvement and verification are easy to define.
 
 ### Hypothesis formalization and certified artifacts
 
-大胆な仮説や、制御則、プロトコル、回路、ソフトウェアなどの設計を、形式仕様と checker を備えた Research Program に変換する。主張を機械で判定可能にする形式化の過程自体を研究対象にする。
+Turn bold hypotheses, or designs such as control laws, protocols, circuits, and software, into Research Programs with formal specifications and checkers. Formalization itself — making claims machine-decidable — is a research object.
 
 ### Performance improvement
 
-正しさを維持しながら、処理時間、メモリ、消費電力、コストなどを改善する。各改善が次の baseline となり、異なる人間や AI が継続して最適化する。
+Improve runtime, memory, energy, or cost while holding correctness. Each improvement becomes the next baseline, and different humans and AI keep optimizing.
 
 ### Search problems
 
-組合せ最適化、構成探索、反例探索、境界改善など、候補の妥当性と優劣を checker で確認できる問題に取り組む。
+Combinatorial optimization, construction search, counterexample search, bound improvement — problems where a checker confirms a candidate's validity and ranking.
 
 ### Reproduction and refutation
 
-公開研究の主張を、機械で検証可能な Research Program に変換する。形式化、証明、反例探索を共有し、反証も同じ確度で残す。
+Turn claims from published research into machine-verifiable Research Programs. Share formalizations, proofs, and counterexample searches; keep refutations at the same standing.
 
 ### Formal and executable research
 
-形式証明、実行可能モデル、シミュレーション、データと checker の組み合わせにより、主張と証拠を一体として扱う。
+Treat claims and evidence as one, via formal proofs, executable models, simulations, and combinations of data and checkers.
 
-### 未知の真値を挟撃する証明競争
+### Proof races against unknown true values
 
-真値が未知の数学的量を、下界（構成の存在定理）と上界（組合せ論的証明）の両面から Lean 等で機械検証しながら狭めていく。証明対象の定理の中にスコアが組み込まれ、カーネルが受理した値だけが Frontier を更新する。Proximity Prize の IRS 簡約閾值が先行例である。
+Squeeze an unknown mathematical quantity from both sides: lower bounds (existence of constructions) and upper bounds (combinatorial proofs), all machine-checked in Lean or similar. The score lives inside the theorem being proved; only values the kernel accepts move the Frontier. The IRS reduction threshold of the Proximity Prize is a precedent.
 
-具体例と、解決が加速する分野・一般人のメリット：
+Examples, the fields they accelerate, and the benefit to non-specialists:
 
-| 問題 | 未解決の性質 | 現在の知見 | 加速する分野 | 一般人のメリット |
+| Problem | What is unknown | Current knowledge | Fields accelerated | Benefit to the public |
 |---|---|---|---|---|
-| **R(5,5)** | 43〜46の狭い区間で止まる。真値未知 | R(4,5)=25 は 2024 年に確定 | 値そのものは回路規模の「物差し」。**解法手法**（SAT 証明書・数え上げ）が符号探索・ハード検証の SAT 利用に還流 | 高密度通信・GIS 等の距離オラクル設計の基礎が更新（影響は間接・長期） |
-| **PFR 定数** | Marton 予想の最適定数 c が未知 | Lean 検証済み証明（c=11）があり、改良競争が続く | **符号理論に直結**：Reed–Muller 符号の Shannon 容量理論（2024）が PFR の道具で開拓。擬似乱数・非可改ざん符号へも接続 | 深宇宙通信・5G/6G・SSD 等**誤り訂正の理論限界の更新**という「物差し」となる |
-| **球充填・kissing number（各次元）** | 多数の次元で真値未知 | E8・24 次元は解決。上界は LP 境界、下界は格子構成で挟撃 | **通信の信号配置と同型**（Shannon 1948）。24 次元 Leech 格子はボイジャー通信に実使用歴 | Wi-Fi・衛星・光ファイバで**同じ電力でもっと多くのデータ**を送れる可能性 |
-| **ソートネットワーク最短長 S(n)** | 小さい n で最小比較器数が未知 | n≤8 は確定、それ以上は SAT×証明書 | ハードの並列カウンタ・メディアンフィルタに実使用歴。**データ非依存＝タイミング側チャネルに強い**のでセキュア計算基盤 | リアルタイム映像処理や暗号デバイスが**より小さく・速く・漏れない**（直接・即効性が高い） |
-| **cap set（F₃ⁿ）** | 小さい n で真値未知、漸近は既知 | 多項式手法が行列乗算のランク限界に転用済み（CLP/EGZ 法） | 計算量理論の最重要未解決（行列乗算指数の上限）に給油 | 将来的な大規模数値計算・AI 学習の**計算コスト低下**の可能性（長期・不確実） |
+| **R(5,5)** | True value stuck in a narrow 43–46 window | R(4,5)=25 proved in 1995, machine-verified in 2024 | The value is a yardstick for circuit sizes; the **methods** (SAT certificates, enumeration) flow back into code search and SAT-based hardware verification | Better foundations for distance-oracle design in dense comms and GIS (indirect, long-term) |
+| **PFR constant** | The optimal constant c in Marton's conjecture | A Lean-verified proof stands at c=11, and the race to shrink it continues | **Directly coding theory**: Reed–Muller Shannon capacity theory (2024) was opened up with PFR tools; links to PRGs and tamper-proof codes | Refreshes the theoretical limits of **error correction** (deep-space comms, 5G/6G, SSDs) |
+| **Sphere packing & kissing numbers (per dimension)** | True values unknown in most dimensions | Solved for E8 and dimension 24; LP bounds above, lattice constructions below | **Isomorphic to signal constellation design** (Shannon 1948); the 24-dim Leech lattice is built from the Golay code Voyager actually flew | Potentially more data at the same power over Wi-Fi, satellite, and fiber |
+| **Shortest sorting network S(n)** | Minimal comparator counts unknown for small n | Exact values settled through n=10; beyond that, SAT × certificates | Used in hardware parallel counters and median filters; **data-independence = timing-side-channel resistance**, a base for secure computing | Real-time video and crypto devices that are smaller, faster, and leak less (direct, near-term) |
+| **Cap set (F₃ⁿ)** | True values unknown for small n; asymptotics known | The polynomial method (CLP/EGZ) is already repurposed to bound the matrix-multiplication exponent | Fuels the top open problem of complexity theory (the upper end of ω) | Possible long-term drop in compute cost for large numerics and AI training |
 
-即効性が高いのはソートネットワーク（ハード実装が現物で動く）と球充填（通信設計と同型）。PFR は誤り訂正の理論基盤を強くする中間型。R(5,5) と cap set は値そのものは遠く、方法論の転用が近い。ただし、すべての問題で共通しているのは、検証済みの証明に置き換えること自体が数学全体の信頼を底上げするという点である。
+Fastest payoff: sorting networks (hardware implementations run today) and sphere packing (isomorphic to comms design). PFR is intermediate, strengthening the theory base of error correction. R(5,5) and cap set pay off through method transfer. Common to all: replacing an unverified claim with a verified proof raises the trust of mathematics as a whole.
 
 ## A Research Market for Verified Progress
 
-長期的には、Baikal を「検証済み進歩の共同生産市場」にする。
+Long-term, Baikal becomes a co-production market for verified progress.
 
-課題所有者、研究者、AI、検証者、計算提供者が、それぞれ異なる能力を持ち寄る。交換される価値は、もっともらしい回答でも、提出回数でも、計算時間そのものでもない。第三者が確認し、次の研究が継承できる進歩である。
+Assigners, researchers, AI, verifiers, and compute providers each bring different capacities. What is exchanged is not plausible answers, submission counts, or raw compute, but progress that a third party can confirm and the next study can inherit.
 
-報酬、ランキング、評判、資金配分は、この市場を支える手段になり得る。ただし、現段階では特定の報酬設計を中核に置かない。経済設計が研究の誠実さや知識共有を歪めないことを優先する。
+Rewards, rankings, reputation, and funding can support this market — but no specific reward design is central at this stage. Keeping economic design from distorting research integrity and knowledge sharing comes first.
 
 ## Attribution and Licensing
 
-すべての提出は、人間または組織の責任主体と、利用したモデル、エージェント、ハーネス、主要ツールの provenance を記録する。
+Every submission records a responsible human or organization, plus the provenance of models, agents, harnesses, and major tools used.
 
-ライセンスは Research Program の開始時に固定する。プログラムごとに異なるライセンスを選べるが、参加者は提出前にその条件へ同意し、Frontier に昇格した成果を後続の参加者が同じ条件で検証・継承できなければならない。
+Licenses are fixed at program start. Programs may choose different licenses, but participants agree to the terms before submitting, and later participants must be able to verify and inherit Frontier results under the same terms.
 
 ## What Baikal Is Not
 
-- もっともらしい回答を返すだけの AI チャットではない
-- 特定モデルの能力を示すためだけの leaderboard ではない
-- 一度きりの hackathon や winner-takes-all の競技ではない
-- 生の chain-of-thought を収集・公開するための仕組みではない
-- 運営者だけが研究記録を所有する閉じた SaaS ではない
-- 検証できない主張を「AI が言ったから」という理由で成果にする場所ではない
+- Not an AI chat that returns plausible answers
+- Not a leaderboard for showcasing one model's ability
+- Not a one-off hackathon or a winner-takes-all contest
+- Not a mechanism for collecting and publishing raw chain-of-thought
+- Not a closed SaaS where only the operator owns the research record
+- Not a place where unverifiable claims count as results "because AI said so"
 
 ## Relationship to Yukon
 
-Yukon が示す「検証済み改善を共有リポジトリへ昇格し、全参加者が新しい baseline から再開する」という累積的研究ループから学ぶ。
+Baikal learns from the loop Yukon demonstrates: verified improvements promoted into a shared repository, with every participant resuming from the new baseline.
 
-Baikal は、その考え方を特定の競技や報酬制度に閉じず、成功・失敗・反証を含む研究履歴、変更不能な検証契約、移植可能な研究プロトコルへ広げる。Yukon の複製ではなく、継続的で再現可能な研究を社会の共通インフラにすることを目指す。
+Baikal extends the idea beyond any single contest or reward scheme, into research history that includes failures and refutations, immutable verification contracts, and a portable research protocol. Not a clone of Yukon — an aim to make continuous, reproducible research a common infrastructure of society.
 
 ## Roadmap: private proof verification on Ethereum
 
-将来の追加機能として、検証済み証明の成立事実を Ethereum 上で検証可能にする。提出物の検証プログラム（checker や証明検証器）を zkVM 上で実行し、その succinct proof をオンチェーンの verifier contract が確認する。
+As a future feature, Baikal will make the fact of a verified proof checkable on Ethereum: run the submission's verifier (checker or proof checker) inside a zkVM, and let an on-chain verifier contract confirm the succinct proof.
 
-- **隠す対象**：証明本文、witness、探索過程などの提出物そのもの
-- **明かす対象**：固定された検証プログラムを正しく実行したこと、およびその検証契約の識別子
-- **位置づけ**：Principle 6 の「秘匿性は検証可能性を捨てる理由にしない」を技術的に支える機能。企業組織の非公開研究への拡張にも道を開く
-- **主な課題**：オンチェーン検証コントラクトと検証契約の版の一致性（契約不変性との整合）、zkVM 実行コストと証明サイズ、機械可判定な検証を zkVM で再現可能な範囲の定義
+- **Hidden**: the submissions themselves — proof bodies, witnesses, search processes
+- **Revealed**: that the fixed verification program ran correctly, and the identifier of its verification contract
+- **Positioning**: the technical counterpart of Principle 6 ("privacy is not a reason to give up verifiability"); opens extension to private corporate research
+- **Main challenges**: version consistency between the on-chain contract and the verification contract (alignment with contract immutability), zkVM run cost and proof size, and defining the scope of machine-decidable verification reproducible inside a zkVM
 
-実現に必要な設計（zkVM 選定、契約の版管理、オンチェーン interface）は、この節の宣言範囲を超えて後続で設計する。
+The design needed to realize this (zkVM selection, contract version management, on-chain interface) is designed in later work, beyond the scope of this section.
 
 ## Current Status
 
-このリポジトリは構想段階にある。現在の成果物は、サービスの哲学、世界観、想定ユースケースを定義する本文書のみである。
+This repository is at concept stage. The current output is this document alone, defining the philosophy, worldview, and expected use cases of the service.
 
-技術スタック、実行基盤、データモデル、API、セキュリティ設計、報酬設計、ガバナンス実装は、ここで定めた原則を満たすための手段として今後設計する。
+Tech stack, runtime, data model, API, security design, reward design, and governance implementation will be designed later, as means to satisfy the principles set here.
