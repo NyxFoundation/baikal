@@ -107,32 +107,24 @@ function initField() {
   const canvas = document.getElementById("frontier-field");
   const context = canvas.getContext("2d");
   if (!context) return;
-  const button = document.querySelector(".motion-toggle");
   const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
   const color = getComputedStyle(document.documentElement).getPropertyValue("--blue").trim();
   const points = createPoints();
   const animation = createFieldAnimation(angle => paintField(canvas, context, points, angle, color));
-  let state = { paused: false, visible: false };
+  let visible = false;
   const updateMotion = () => {
-    button.disabled = preference.matches;
-    button.setAttribute("aria-pressed", String(state.paused || preference.matches));
-    const onScreen = state.visible && !document.hidden;
-    animation.setActive(onScreen && !state.paused && !preference.matches);
+    const onScreen = visible && !document.hidden;
+    animation.setActive(onScreen && !preference.matches);
     if (onScreen) animation.redraw();
   };
-  button.addEventListener("click", () => {
-    state = { ...state, paused: !state.paused };
-    updateMotion();
-  });
   preference.addEventListener("change", updateMotion);
   new ResizeObserver(updateMotion).observe(canvas);
   new IntersectionObserver(([entry]) => {
-    state = { ...state, visible: entry.isIntersecting };
+    visible = entry.isIntersecting;
     updateMotion();
   }).observe(canvas);
   document.addEventListener("visibilitychange", updateMotion);
   document.documentElement.classList.add("has-field");
-  button.hidden = false;
   updateMotion();
 }
 

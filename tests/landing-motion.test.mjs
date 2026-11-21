@@ -50,17 +50,15 @@ function createCanvas() {
 function createEnvironment({ reducedMotion = false, canvasAvailable = true } = {}) {
   const clock = createClock();
   const canvas = createCanvas();
-  const attributes = new Map();
   const classes = new Set();
   const observers = {};
   const preference = target({ matches: reducedMotion });
-  const button = target({ hidden: true, setAttribute: (name, value) => attributes.set(name, value) });
   const menu = target({ querySelector: () => ({ focus() {} }), querySelectorAll: () => [], contains: () => false });
   const document = target({
     hidden: false,
     documentElement: { classList: { add: name => classes.add(name) } },
     getElementById: () => canvas.element,
-    querySelector: selector => ({ '.site-menu': menu, '.motion-toggle': button })[selector],
+    querySelector: selector => selector === '.site-menu' ? menu : null,
   });
   if (!canvasAvailable) canvas.element.getContext = () => null;
   runInNewContext(source, {
@@ -74,8 +72,7 @@ function createEnvironment({ reducedMotion = false, canvasAvailable = true } = {
   }, { filename: scriptUrl.pathname });
   observers.intersection?.([{ isIntersecting: true }]);
   return {
-    clock, canvas, button, attributes, classes,
-    click() { button.dispatchEvent(new Event('click')); },
+    clock, canvas, classes,
     reduce(matches) { preference.matches = matches; preference.dispatchEvent(new Event('change')); },
     intersect(isIntersecting) { observers.intersection([{ isIntersecting }]); },
     hide(hidden) { document.hidden = hidden; document.dispatchEvent(new Event('visibilitychange')); },
@@ -98,32 +95,11 @@ test('should rotate without scrolling when the figure is visible', () => {
   assert.equal(env.clock.pending, 1);
 });
 
-test('should freeze and resume from the same angle when the user pauses motion', () => {
-  const env = createEnvironment();
-  env.clock.step();
-  env.clock.step();
-  env.click();
-  env.clock.step();
-  const paused = env.canvas.snapshot();
-  assert.equal(env.attributes.get('aria-pressed'), 'true');
-  assert.equal(env.clock.pending, 0);
-  env.clock.step(60_000);
-  assert.equal(env.canvas.snapshot(), paused);
-  env.click();
-  env.clock.step();
-  assert.equal(env.canvas.snapshot(), paused);
-  env.clock.step();
-  assert.notEqual(env.canvas.snapshot(), paused);
-  assert.equal(env.attributes.get('aria-pressed'), 'false');
-});
-
 test('should render a still figure when reduced motion is enabled on load', () => {
   const env = createEnvironment({ reducedMotion: true });
   env.clock.step();
   const initial = env.canvas.snapshot();
   assert.ok(env.canvas.paints > 0);
-  assert.equal(env.button.disabled, true);
-  assert.equal(env.attributes.get('aria-pressed'), 'true');
   env.clock.step(1000);
   assert.equal(env.canvas.snapshot(), initial);
   assert.equal(env.clock.pending, 0);
@@ -131,7 +107,6 @@ test('should render a still figure when reduced motion is enabled on load', () =
   env.clock.step();
   env.clock.step();
   assert.notEqual(env.canvas.snapshot(), initial);
-  assert.equal(env.button.disabled, false);
 });
 
 test('should stop immediately when reduced motion changes during playback', () => {
@@ -143,23 +118,11 @@ test('should stop immediately when reduced motion changes during playback', () =
   env.clock.step(1000);
   assert.equal(env.canvas.snapshot(), moving);
   assert.equal(env.clock.pending, 0);
-  assert.equal(env.button.disabled, true);
-});
-
-test('should preserve a manual pause when the system motion preference changes', () => {
-  const env = createEnvironment();
-  env.clock.step();
-  env.click();
-  env.clock.step();
-  const paused = env.canvas.snapshot();
-  env.reduce(true);
   env.reduce(false);
   env.clock.step();
-  env.clock.step(1000);
-  assert.equal(env.canvas.snapshot(), paused);
-  assert.equal(env.attributes.get('aria-pressed'), 'true');
-  assert.equal(env.button.disabled, false);
-  assert.equal(env.clock.pending, 0);
+  assert.equal(env.canvas.snapshot(), moving);
+  env.clock.step();
+  assert.notEqual(env.canvas.snapshot(), moving);
 });
 
 for (const reason of ['offscreen', 'hidden tab']) {
@@ -191,10 +154,8 @@ test('should cancel a pending still repaint when a paused figure leaves the view
   assert.equal(env.clock.pending, 0);
 });
 
-test('should redraw once without restarting motion when a paused canvas resizes', () => {
-  const env = createEnvironment();
-  env.clock.step();
-  env.click();
+test('should redraw once without restarting motion when a reduced-motion canvas resizes', () => {
+  const env = createEnvironment({ reducedMotion: true });
   env.clock.step();
   const paints = env.canvas.paints;
   env.resize(320, 300);
@@ -246,7 +207,6 @@ test('should complete a full turn without clipping when motion runs for ninety s
 
 test('should retain the static illustration when a Canvas context is unavailable', () => {
   const env = createEnvironment({ canvasAvailable: false });
-  assert.equal(env.button.hidden, true);
   assert.equal(env.classes.has('has-field'), false);
   assert.equal(env.clock.pending, 0);
 });

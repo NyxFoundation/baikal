@@ -134,6 +134,23 @@ class LandingTests(unittest.TestCase):
         self.assertNotIn("Conceptual illustration of exploration and verification.", source)
         self.assertNotIn("Not research data.", source)
 
+    def test_should_omit_controls_for_decorative_motion(self):
+        for name in ("index.html", "landing.css", "landing.js"):
+            self.assertNotIn("motion-toggle", (DESIGN / name).read_text(), name)
+
+    def test_should_leave_decorative_motion_without_annotations(self):
+        source = (DESIGN / "index.html").read_text()
+        for label in ("Checkable structure", "Fig. 01 / The search space"):
+            self.assertNotIn(label, source)
+        for name in ("index.html", "landing.css"):
+            content = (DESIGN / name).read_text()
+            self.assertNotIn("field-label", content, name)
+            self.assertNotIn("field-heading", content, name)
+        fields = [attrs for _, attrs in self.page.elements
+                  if "hero-field" in attrs.get("class", "").split()]
+        self.assertEqual(len(fields), 1)
+        self.assertEqual(fields[0].get("aria-hidden"), "true")
+
     def test_should_not_show_access_restrictions_for_public_research(self):
         source = (DESIGN / "index.html").read_text()
         for notice in ("Access required", "Private repository", "Request access"):
